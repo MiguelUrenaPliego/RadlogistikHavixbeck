@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[cod]
+build/
+dist/
+wheels/
+*.egg-info/
+
+# Virtual environments
+.venv/
+.claude/
+
+# Data directories
+streets/
+
+# Ignore everything in aoi...
+aoi/*
+# ...except this file
+!aoi/aoi.gpkg

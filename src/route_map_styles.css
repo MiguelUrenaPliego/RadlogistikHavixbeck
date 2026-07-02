@@ -1,0 +1,360 @@
+/* route_map_styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.leaflet-container {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+}
+.leaflet-control-layers { display: none !important; }
+
+/* Map scale control: sits to the right of the default zoom +/- control,
+   top-left, above the (now lower) summary box. Leaflet stacks same-corner
+   controls vertically by default, so pull it up and right explicitly. */
+.leaflet-top.leaflet-left { display: flex; flex-direction: row; align-items: flex-start; }
+.leaflet-control-scale {
+  margin-left: 8px !important;
+  margin-top: 10px !important;
+}
+.leaflet-control-scale-line {
+  background: rgba(255,255,255,0.85) !important;
+  border: 2px solid #475569 !important;
+  border-top: none !important;
+  padding: 1px 5px !important;
+  font-size: 11px !important;
+  color: #1e293b !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   LEGS (loop polylines). Folium draws every POI×POI pair with
+   weight:0/opacity:0 inline styles; ".lv" (leg-visible) overrides them.
+   Fill = product colour (green ebike / red car). Border = black normally,
+   blue on highlight-2.
+   ════════════════════════════════════════════════════════════════════ */
+path.leg-fill.lv   { stroke-width: 4px !important; stroke-opacity: 1 !important; transition: none !important; }
+path.leg-border.lv { stroke-width: 6px !important; stroke-opacity: 1 !important; stroke: #000000 !important; transition: none !important; }
+
+/* Highlight-2 (hover): thicker border, blue, larger, raised z-order */
+path.leg-fill.lv.hl2 {
+  stroke-width: 7px !important;
+  stroke-opacity: 1 !important;
+}
+path.leg-border.lv.hl2 {
+  stroke: #2563eb !important;
+  stroke-width: 11px !important;
+  stroke-opacity: 0.9 !important;
+}
+
+/* Highlight-1 (click isolation): hide everything except .iso-keep */
+body.isolation-active path.leg-fill,
+body.isolation-active path.leg-border,
+body.isolation-active .poi {
+  display: none !important;
+}
+body.isolation-active path.leg-fill.iso-keep.lv,
+body.isolation-active path.leg-border.iso-keep.lv {
+  display: inline !important;
+}
+body.isolation-active .poi.iso-keep.pv {
+  display: inline-flex !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   DYNAMIC ARROW / PRODUCT-ICON MARKERS (drawn freshly each render)
+   ════════════════════════════════════════════════════════════════════ */
+.dyn-arrow, .dyn-product {
+  pointer-events: auto;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dyn-arrow svg { fill: #000000; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5)); }
+.dyn-arrow.dyn-hl2 svg { fill: #1d4ed8; }
+.dyn-product {
+  font-size: 15px;
+  white-space: nowrap;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.35));
+}
+/* Highlight-2 product icons: larger only, no background/border box. */
+.dyn-product.dyn-hl2 {
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.45));
+}
+.leaflet-marker-icon:has(.dyn-arrow),
+.leaflet-marker-icon:has(.dyn-product) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+/* Product icons sit above arrows (both are drawn on the same pane, but
+   icons are appended after arrows so they paint on top within a segment;
+   this rule keeps that true even if Leaflet reorders DOM nodes). */
+.leaflet-marker-icon:has(.dyn-product) { z-index: 610 !important; }
+.leaflet-marker-icon:has(.dyn-arrow) { z-index: 600 !important; }
+/* The hover (highlight-2) marker pane must paint above the base marker
+   pane and above all loop legs/POIs that remain in normal style. */
+.leaflet-marker-icon:has(.dyn-arrow.dyn-hl2) { z-index: 8600 !important; }
+.leaflet-marker-icon:has(.dyn-product.dyn-hl2) { z-index: 8610 !important; }
+
+/* While highlight-2 is active, hide base-layer dynamic markers so hl2
+   icons (larger, blue) cleanly REPLACE rather than stack on top of them. */
+body.hl2-active .leaflet-marker-icon:has(.dyn-arrow:not(.dyn-hl2)),
+body.hl2-active .leaflet-marker-icon:has(.dyn-product:not(.dyn-hl2)) {
+  display: none !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   POI MARKERS
+   ════════════════════════════════════════════════════════════════════ */
+.poi {
+  display: none; /* shown only once .pv is applied (visible in active layer) */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  transition: transform 0.15s ease;
+}
+.poi.pv { display: inline-flex; }
+.leaflet-marker-icon:has(.poi.pv) { z-index: 700 !important; }
+.leaflet-marker-icon:has(.poi:not(.pv)) { display: none !important; }
+
+.poi-inner {
+  min-width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 0 6px;
+  font-size: 13px;
+  background: #ffffff;
+  border: 2px solid #0f172a;
+  border-radius: 9999px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  transition: all 0.15s ease;
+}
+.poi-arrow { font-size: 13px; font-weight: 900; color: #1e293b; margin: 0 2px; line-height: 1; }
+.poi-arrow-bi { font-size: 14px; color: #0f172a; }
+.poi-prod-group { display: inline-flex; gap: 1px; }
+.poi.poi-restaurant .poi-inner { background: #dbeafe; }
+.poi.poi-tilbeck .poi-inner { background: #fce7f3; }
+
+/* Highlight-2 on a POI connected through a hovered loop/leg: bigger, blue
+   border, raised z-order (but below the directly-hovered/clicked POI). */
+.poi.hl2 .poi-inner {
+  border: 3px solid #2563eb !important;
+  transform: scale(1.35);
+  box-shadow: 0 0 14px rgba(37, 99, 235, 0.6), 0 4px 10px rgba(0,0,0,0.25);
+}
+.leaflet-marker-icon:has(.poi.hl2) { z-index: 9000 !important; }
+
+/* The POI that was DIRECTLY hovered/clicked: pink border, frontmost. */
+.poi.hl2-origin .poi-inner {
+  border: 3px solid #ec4899 !important;
+  transform: scale(1.4);
+  box-shadow: 0 0 16px rgba(236, 72, 153, 0.65), 0 4px 10px rgba(0,0,0,0.25);
+}
+.leaflet-marker-icon:has(.poi.hl2-origin) { z-index: 9100 !important; }
+
+/* ════════════════════════════════════════════════════════════════════
+   TOP BAR (layer dropdown) + LANGUAGE SWITCHER
+   ════════════════════════════════════════════════════════════════════ */
+#topBar {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  background: rgba(255,255,255,0.92);
+  border-radius: 24px;
+  padding: 4px;
+  box-shadow: 0 8px 20px rgba(15,23,42,0.12);
+}
+.layer-dropdown {
+  border: none;
+  background: transparent;
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 18px;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 20px;
+}
+
+#langSwitcher {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 10000;
+  background: rgba(255,255,255,0.92);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+#langSwitcher:hover { background: #ffffff; }
+
+/* ════════════════════════════════════════════════════════════════════
+   FILTER PANEL (vehicle + product checkboxes)
+   ════════════════════════════════════════════════════════════════════ */
+#ctrlPanel {
+  position: fixed;
+  top: 18px;
+  right: 16px;
+  margin-top: 48px;
+  z-index: 9999;
+  background: rgba(255,255,255,0.94);
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 12.5px;
+  min-width: 210px;
+  max-height: 70vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(15,23,42,0.1);
+}
+#ctrlPanel h4 { margin: 0 0 8px 0; font-size: 14px; font-weight: 700; color: #0f172a; border-left: 3px solid #10b981; padding-left: 8px; }
+#ctrlPanel .sect { margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(15,23,42,0.06); }
+#ctrlPanel .sect-title { font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: 700; letter-spacing: .6px; margin-bottom: 6px; }
+#ctrlPanel label { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 3px 0; color: #475569; font-weight: 500; }
+#ctrlPanel label:hover { color: #0f172a; }
+#ctrlPanel input[type=checkbox] { cursor: pointer; accent-color: #10b981; width: 15px; height: 15px; }
+
+/* ════════════════════════════════════════════════════════════════════
+   SUMMARY BOX (route totals)
+   ════════════════════════════════════════════════════════════════════ */
+#infoBox {
+  position: fixed;
+  top: 90px;
+  left: 16px;
+  z-index: 9999;
+  background: rgba(255,255,255,0.94);
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 12px;
+  min-width: 230px;
+  box-shadow: 0 10px 25px rgba(15,23,42,0.1);
+}
+#infoBox b { font-size: 14px; font-weight: 700; color: #0f172a; display: block; margin-bottom: 8px; border-left: 3px solid #2563eb; padding-left: 8px; }
+#infoBox .ib-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 6px; color: #334155; }
+#infoBox .ib-row span:last-child { font-weight: 700; color: #0f172a; }
+#infoBox .ib-label { color: #64748b; white-space: nowrap; }
+#infoBox .ib-sep { border: none; border-top: 1px solid rgba(15,23,42,0.08); margin: 8px 0; }
+
+/* Stars: built from inline SVG (not a font glyph) so the fill clip is
+   pixel-exact regardless of font metrics/glyph bounding box quirks. */
+.stars-wrap { display: inline-flex; gap: 2px; line-height: 1; vertical-align: middle; }
+.star-slot { position: relative; display: inline-block; width: 14px; height: 14px; }
+.star-slot svg { position: absolute; top: 0; left: 0; width: 14px; height: 14px; }
+.star-bg { fill: #cbd5e1; }
+.star-fg { fill: #eab308; }
+
+/* ════════════════════════════════════════════════════════════════════
+   HOVER TOOLTIP (follows cursor)
+   ════════════════════════════════════════════════════════════════════ */
+#routeTip {
+  position: fixed;
+  z-index: 20000;
+  pointer-events: none;
+  display: none;
+  background: rgba(15,23,42,0.94);
+  color: #f8fafc;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 11.5px;
+  max-width: 320px;
+  line-height: 1.5;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+}
+#routeTip b { display: block; margin-bottom: 4px; font-size: 12.5px; }
+.tip-row { display: flex; justify-content: space-between; gap: 12px; }
+
+/* ════════════════════════════════════════════════════════════════════
+   CLICK POPUPS (loop / poi)
+   ════════════════════════════════════════════════════════════════════ */
+.leaflet-popup-content-wrapper {
+  background: rgba(255,255,255,0.97) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 20px rgba(15,23,42,0.18) !important;
+}
+.popup-box { font-family: 'Inter', sans-serif; font-size: 12px; color: #1e293b; min-width: 220px; }
+.popup-box b { font-size: 13.5px; display: block; margin-bottom: 4px; }
+.popup-sub { font-size: 11px; color: #64748b; margin-bottom: 4px; }
+.popup-sector { font-style: italic; color: #94a3b8; }
+.popup-sep { border-top: 1px solid #e2e8f0; margin: 8px 0; }
+.popup-label { font-size: 10.5px; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-top: 6px; }
+.popup-products { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.prod-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 3px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.prod-chip:hover { background: #e2e8f0; }
+
+/* ════════════════════════════════════════════════════════════════════
+   GOODS DETAIL BOX (bottom-right, opened from a product chip click)
+   ════════════════════════════════════════════════════════════════════ */
+#goodsDetailBox {
+  position: fixed;
+  bottom: 24px;
+  right: 16px;
+  z-index: 10000;
+  background: rgba(255,255,255,0.96);
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 12px;
+  min-width: 230px;
+  box-shadow: 0 10px 25px rgba(15,23,42,0.15);
+  display: none;
+}
+#goodsDetailBox .gdb-close { position: absolute; top: 10px; right: 12px; font-size: 16px; font-weight: 700; cursor: pointer; color: #64748b; }
+#goodsDetailBox .gdb-close:hover { color: #0f172a; }
+#goodsDetailBox .gdb-title { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 8px; border-left: 3px solid #10b981; padding-left: 8px; }
+#goodsDetailBox .gdb-row { display: flex; justify-content: space-between; margin-top: 6px; color: #334155; }
+#goodsDetailBox .gdb-label { color: #64748b; }
+#goodsDetailBox .gdb-level { font-size: 13px; letter-spacing: 1px; }
+#goodsDetailBox .gdb-level-none { color: #94a3b8; }
+
+/* ════════════════════════════════════════════════════════════════════
+   RASTER BACKGROUND LAYER DROPDOWN + LEGENDS (separate from #topBar)
+   ════════════════════════════════════════════════════════════════════ */
+#rasterSelectContainer {
+  position: fixed;
+  bottom: 24px;
+  left: 16px;
+  z-index: 9999;
+  background: rgba(255,255,255,0.92);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+#rasterSelect { border: 1px solid #e2e8f0; border-radius: 6px; padding: 4px 6px; font-size: 12px; }
+.maplegend {
+  position: fixed;
+  bottom: 70px;
+  left: 16px;
+  z-index: 9999;
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  max-height: 260px;
+  overflow-y: auto;
+}
+.maplegend-gradient { margin-top: 8px; width: 200px; height: 16px; border: 1px solid #999; }
+.maplegend-minmax { display: flex; justify-content: space-between; width: 200px; margin-top: 4px; }
+.maplegend-item { display: flex; align-items: center; margin-top: 4px; }
+.maplegend-swatch { width: 13px; height: 13px; border: 1px solid #555; margin-right: 6px; }

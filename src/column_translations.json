@@ -1,0 +1,42 @@
+{
+  "en": {
+    "Address": "Address",
+    "Sector": "Sector",
+    "Hamlet": "Hamlet",
+    "Company": "Company",
+    "MeansOfTransport": "Means of Transport",
+    "ConsumedGoods": "Consumed Goods",
+    "Suppliers": "Suppliers",
+    "ProducedGoods": "Produced Goods",
+    "Customers": "Customers",
+    "Product": "Product",
+    "Potential": "Potential",
+    "Weight": "Weight",
+    "Size": "Size",
+    "SpecialFeatures": "Special Features",
+    "B2B": "B2B",
+    "CargoBikeFriendly": "Cargo Bike Friendly",
+    "Start": "Start",
+    "DestinationName": "Destination"
+  },
+  "de": {
+    "Address": "Adresse",
+    "Sector": "Branche",
+    "Hamlet": "Bauernschaft",
+    "Company": "Unternehmen",
+    "MeansOfTransport": "Fortbewegungsmittel",
+    "ConsumedGoods": "Konsumierte Güter",
+    "Suppliers": "Lieferanten",
+    "ProducedGoods": "Produzierte Güter",
+    "Customers": "Kunden",
+    "Product": "Produkt",
+    "Potential": "Potenzial",
+    "Weight": "Gewicht",
+    "Size": "Größe",
+    "SpecialFeatures": "Besonderheiten",
+    "B2B": "B2B?",
+    "CargoBikeFriendly": "Radlogistik?",
+    "Start": "Start",
+    "DestinationName": "Ziel"
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "_comment": "OSM POI download configuration. Edit this file to change what gets downloaded and how goods are mapped.",
+
+  "goods": [
+    {
+      "good_id": 0,
+      "name": "drinks",
+      "potential": 8,
+      "weight": "medium",
+      "size": "medium",
+      "special_features": ["fragile", "heavy padding"],
+      "icon": "🥤"
+    },
+    {
+      "good_id": 1,
+      "name": "food",
+      "potential": 9,
+      "weight": "small",
+      "size": "medium",
+      "special_features": ["light padding"],
+      "icon": "🥦"
+    },
+    {
+      "good_id": 2,
+      "name": "bread",
+      "potential": 8,
+      "weight": "small",
+      "size": "small",
+      "special_features": [],
+      "icon": "🍞"
+    },
+    {
+      "good_id": 3,
+      "name": "wine",
+      "potential": 7,
+      "weight": "medium",
+      "size": "medium",
+      "special_features": ["fragile", "heavy padding"],
+      "icon": "🍷"
+    },
+    {
+      "good_id": 4,
+      "name": "beer",
+      "potential": 7,
+      "weight": "medium",
+      "size": "medium",
+      "special_features": ["fragile", "heavy padding"],
+      "icon": "🍺"
+    },
+    {
+      "good_id": 5,
+      "name": "honey",
+      "potential": 6,
+      "weight": "small",
+      "size": "tiny",
+      "special_features": ["light padding"],
+      "icon": "🍯"
+    },
+    {
+      "good_id": 6,
+      "name": "medicine",
+      "potential": 10,
+      "weight": "tiny",
+      "size": "tiny",
+      "special_features": ["refrigeration"],
+      "icon": "💊"
+    },
+    {
+      "good_id": 7,
+      "name": "medical_bandages",
+      "potential": 9,
+      "weight": "small",
+      "size": "small",
+      "special_features": ["padding"],
+      "icon": "🩹"
+    }
+  ],
+
+  "poi_types": {
+    "gastronomy": {
+      "label": "Gastronomy",
+      "weight": "medium",
+      "min_size": "medium",
+      "max_size": "medium",
+      "size": "medium",
+      "icon": "🍽️",
+      "produces": [],
+      "consumes": ["drinks", "food", "bread", "wine", "beer", "honey"],
+      "osm_tags": [
+        {"amenity": "restaurant"},
+        {"amenity": "cafe"},
+        {"amenity": "fast_food"},
+        {"amenity": "food_court"},
+        {"amenity": "biergarten"},
+        {"amenity": "pub"}
+      ]
+    },
+    "supermarket": {
+      "label": "Supermarket",
+      "weight": "medium",
+      "min_size": "medium",
+      "max_size": "big",
+      "size": "medium",
+      "icon": "🛒",
+      "produces": ["food"],
+      "consumes": ["drinks", "food", "bread", "wine", "beer", "honey"],
+      "osm_tags": [
+        {"shop": "supermarket"},
+        {"shop": "convenience"},
+        {"shop": "grocery"}
+      ]
+    },
+    "bakery": {
+      "label": "Bakery",
+      "weight": "small",
+      "min_size": "small",
+      "max_size": "medium",
+      "size": "small",
+      "icon": "🥐",
+      "produces": ["bread"],
+      "consumes": [],
+      "osm_tags": [
+        {"shop": "bakery"},
+        {"craft": "bakery"}
+      ]
+    },
+    "food_market": {
+      "label": "Food Market",
+      "weight": "medium",
+      "min_size": "medium",
+      "max_size": "big",
+      "size": "medium",
+      "icon": "🏪",
+      "produces": ["drinks", "food", "bread", "wine", "beer", "honey"],
+      "consumes": ["drinks", "food", "bread", "wine", "beer", "honey"],
+      "osm_tags": [
+        {"shop": "deli"},
+        {"shop": "farm"},
+        {"shop": "health_food"},
+        {"shop": "food"}
+      ]
+    },
+    "winery": {
+      "label": "Winery",
+      "weight": "medium",
+      "min_size": "medium",
+      "max_size": "big",
+      "size": "medium",
+      "icon": "🍇",
+      "produces": ["wine"],
+      "consumes": [],
+      "osm_tags": [
+        {"craft": "winery"},
+        {"amenity": "winery"},
+        {"shop": "wine"}
+      ]
+    },
+    "drink_shop": {
+      "label": "Drink Shop",
+      "weight": "medium",
+      "min_size": "medium",
+      "max_size": "big",
+      "size": "medium",
+      "icon": "🥂",
+      "produces": ["drinks", "wine", "beer"],
+      "consumes": ["drinks", "wine", "beer"],
+      "osm_tags": [
+        {"shop": "beverages"},
+        {"shop": "drinks"}
+      ]
+    },
+    "bar": {
+      "label": "Bar",
+      "weight": "medium",
+      "min_size": "small",
+      "max_size": "medium",
+      "size": "small",
+      "icon": "🍸",
+      "produces": [],
+      "consumes": ["wine", "beer", "drinks"],
+      "osm_tags": [
+        {"amenity": "bar"},
+        {"amenity": "nightclub"}
+      ]
+    },
+    "brewery": {
+      "label": "Brewery",
+      "weight": "medium",
+      "min_size": "medium",
+      "max_size": "big",
+      "size": "medium",
+      "icon": "🍻",
+      "produces": ["beer"],
+      "consumes": [],
+      "osm_tags": [
+        {"craft": "brewery"},
+        {"industrial": "brewery"}
+      ]
+    },
+    "beekeeper": {
+      "label": "Beekeeper",
+      "weight": "tiny",
+      "min_size": "tiny",
+      "max_size": "small",
+      "size": "tiny",
+      "icon": "🐝",
+      "produces": ["honey"],
+      "consumes": [],
+      "osm_tags": [
+        {"craft": "beekeeper"},
+        {"product": "honey"}
+      ]
+    },
+    "pharmacy": {
+      "label": "Pharmacy",
+      "weight": "tiny",
+      "min_size": "tiny",
+      "max_size": "small",
+      "size": "tiny",
+      "icon": "💊",
+      "produces": ["medicine", "medical_bandages"],
+      "consumes": [],
+      "osm_tags": [
+        {"amenity": "pharmacy"}
+      ]
+    },
+    "healthcare_provider": {
+      "label": "Healthcare Provider",
+      "weight": "small",
+      "min_size": "small",
+      "max_size": "medium",
+      "size": "small",
+      "icon": "🏥",
+      "produces": [],
+      "consumes": ["medicine", "medical_bandages"],
+      "osm_tags": [
+        {"amenity": "hospital"},
+        {"amenity": "clinic"},
+        {"amenity": "doctors"},
+        {"amenity": "nursing_home"},
+        {"social_facility": "nursing_home"},
+        {"amenity": "social_facility", "social_facility": "assisted_living"}
+      ]
+    }
+  },
+
+  "topic_to_poi_types": {
+    "food": ["supermarket", "bakery", "food_market", "drink_shop", "winery", "brewery", "beekeeper"],
+    "gastronomy": ["gastronomy", "bar"],
+    "healthcare": ["healthcare_provider"],
+    "pharmacy": ["pharmacy"]
+  },
+
+  "poi_csv_columns": [
+    "poi_id", "Address", "Lat", "Lon", "Sector",
+    "Company", "ConsumedGoods", "ProducedGoods",
+    "Weight", "MinSize", "MaxSize", "Size"
+  ]
+}

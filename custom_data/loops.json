@@ -1,0 +1,24 @@
+[
+  {
+    "layer_name": "Apotheken-Belieferung",
+    "loops": [
+      [
+        {"poi_id": 0, "load_products": [12], "unload_products": [], "mandatory": true},
+        {"poi_id": 1, "load_products": [], "unload_products": [12], "mandatory": false},
+        {"poi_id": 2, "load_products": [], "unload_products": [12], "mandatory": false},
+        {"poi_id": 0, "load_products": [], "unload_products": [], "mandatory": true}
+      ]
+    ]
+  },
+  {
+    "layer_name": "Getränke & Genuss",
+    "loops": [
+      [
+        {"poi_id": 8, "load_products": [6], "unload_products": [], "mandatory": true},
+        {"poi_id": 7, "load_products": [], "unload_products": [6], "mandatory": false},
+        {"poi_id": 9, "load_products": [], "unload_products": [6], "mandatory": false},
+        {"poi_id": 8, "load_products": [], "unload_products": [], "mandatory": true}
+      ]
+    ]
+  }
+]
