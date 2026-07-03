@@ -912,6 +912,27 @@
   };
 
   // ════════════════════════════════════════════════════════════════════
+  // EMBEDDING HOOK (postMessage) — lets a page that embeds this map in an
+  // <iframe> (e.g. the presentation) pick an initial layer / dismiss the
+  // instructions modal, without changing the map's normal standalone
+  // behaviour (opened directly, no message ever arrives).
+  // ════════════════════════════════════════════════════════════════════
+  window.addEventListener("message", function (e) {
+    var data = e.data || {};
+    if (data.type === "setLayer" && LAYER_ORDER.indexOf(data.layer) !== -1) {
+      state.layerKey = data.layer;
+      var dd = document.getElementById("layerDropdown");
+      if (dd) dd.value = data.layer;
+      if (state.isolation) clearIsolation();
+      populateProductChecks();
+      renderActiveLayer();
+    }
+    if (data.type === "closeInstructions") {
+      window.closeInstructions();
+    }
+  });
+
+  // ════════════════════════════════════════════════════════════════════
   // INIT
   // ════════════════════════════════════════════════════════════════════
   var _initDone = false;
