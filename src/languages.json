@@ -27,7 +27,18 @@
     "min_unit": "min",
     "km_unit": "km",
     "kg_unit": "kg CO₂",
-    "no_data": "—"
+    "no_data": "—",
+    "instructions_title": "Anleitung",
+    "instructions_item1": "Oben können Sie über das Dropdown-Menü zwischen den verschiedenen Schleifen-Layern und Scenarien wechseln. Unten links können Sie verschiedene Hintergrund-Layer einschalten, zum Beispiel OSM Highway oder Radqualität.",
+    "instructions_item2": "Im Filter-Panel rechts können Sie zwischen E-Cargobike- und Van-Routen umschalten und einzelne Produkte ein-/ausblenden.",
+    "instructions_item3": "Klicken Sie auf eine Route oder einen Punkt, um Details wie Zeit, Distanz, Rad-Qualität und CO₂-Ausstoß in der Übersichtsbox zu sehen.",
+    "instructions_item4": "Bewegen Sie die Maus über Routen oder Punkte, um kurze Tooltip-Infos einzublenden.",
+    "instructions_item5": "Über das 🌐-Symbol oben rechts können Sie die Kartensprache wechseln.",
+    "instructions_close": "Verstanden",
+    "index_title": "Betriebliche Kurzstrecken &amp; B2B-Radlogistik in Havixbeck",
+    "index_map_title": "Karte",
+    "index_presentation_title": "Präsentation",
+    "index_report_title": "Bericht"
   },
   "en": {
     "filters_title": "🗺 Filters",
@@ -57,6 +68,17 @@
     "min_unit": "min",
     "km_unit": "km",
     "kg_unit": "kg CO₂",
-    "no_data": "—"
+    "no_data": "—",
+    "instructions_title": "Instructions",
+    "instructions_item1": "Top, use the dropdown menu to switch between the different loop layers and scenario layers. In the bottom-left corner, you can enable different background layers, such as OSM Highway or Bike Quality.",
+    "instructions_item2": "In the filter panel on the right, toggle between e-cargobike and van routes, and show/hide individual products.",
+    "instructions_item3": "Click on a route or an actor to see details such as time, distance, bike quality and CO₂ emissions in the summary box.",
+    "instructions_item4": "Hover over routes or actors to display short tooltip info.",
+    "instructions_item5": "Use the 🌐 icon in the top right to switch the map language.",
+    "instructions_close": "Got it",
+    "index_title": "Short-Distance &amp; B2B Cycle Logistics in Havixbeck",
+    "index_map_title": "Map",
+    "index_presentation_title": "Presentation",
+    "index_report_title": "Report"
   }
 }

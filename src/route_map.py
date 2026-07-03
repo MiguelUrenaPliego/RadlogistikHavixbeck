@@ -97,6 +97,7 @@ def create_background_layers(data, path, overwrite=False, dpi=1500):
     os.makedirs(path, exist_ok=True)
     image_dict = {}
     for col in data.keys():
+        print(f"  → background layer: {col} …")
         col_gdf = data[col][[col, "geometry"]].dropna().copy()
         col_gdf = col_gdf[col_gdf[col] != "[]"]
         col_gdf = col_gdf[col_gdf[col] != ""]
@@ -128,16 +129,53 @@ def create_background_layers(data, path, overwrite=False, dpi=1500):
             image_dict[col] = {"path": filename, "bounds": bounds, "colors": col_gdf[[col, "color"]]}
         else:
             col_gdf = col_gdf.dropna().dissolve(by=col).reset_index()
-            n = len(col_gdf)
             base_colors = [
                 "#0b3c5d", "#f4a261", "#6c5ce7", "#17becf", "#ff66c4",
                 "#1f4e79", "#ffb703", "#8e44ad", "#00a8ff", "#d291bc",
                 "#2f6fb0", "#f7c46c", "#5f27cd", "#2ec4b6", "#b565c2",
                 "#4f81bd", "#f6b26b", "#3b3b98", "#74a9cf", "#e056fd",
             ]
-            colors = (base_colors * ((n // len(base_colors)) + 1))[:n]
             col_gdf = col_gdf.copy()
-            col_gdf["color"] = colors
+            if col == "highway":
+                # "_link" variants (e.g. primary_link) share their parent
+                # type's color instead of getting a distinct one.
+                color_keys = col_gdf[col].str.replace(r"_link$", "", regex=True)
+                # Grouped by traffic character rather than alphabetically:
+                # residential/slow streets cluster in similar blues (easy to
+                # read as "one calm group"), non-motorized ways cluster in
+                # similar greens, while the busier/faster road classes each
+                # get a clearly distinct, more saturated hue since telling
+                # those apart matters more for route planning.
+                key_to_color = {
+                    # fast/major roads -- maximally distinct from each other
+                    "motorway":       "#8b0000",
+                    "trunk":          "#d7263d",
+                    "primary":        "#e08a1e",
+                    "secondary":      "#c9a227",
+                    "tertiary":       "#6a3d9a",
+                    # residential / slow streets -- similar blue family
+                    "residential":    "#1f4e79",
+                    "living_street":  "#3b78b3",
+                    "unclassified":   "#6ea8d8",
+                    "service":        "#a9cce3",
+                    # non-motorized ways -- similar green family
+                    "track":          "#1b5e20",
+                    "bridleway":      "#33691e",
+                    "path":           "#4caf50",
+                    "footway":        "#81c784",
+                    "pedestrian":     "#a5d6a7",
+                    "cycleway":       "#00897b",
+                }
+                unmapped = sorted(set(color_keys.unique()) - set(key_to_color))
+                for i, k in enumerate(unmapped):
+                    key_to_color[k] = base_colors[i % len(base_colors)]
+            else:
+                color_keys = col_gdf[col]
+                unique_keys = sorted(color_keys.unique())
+                key_to_color = {
+                    k: base_colors[i % len(base_colors)] for i, k in enumerate(unique_keys)
+                }
+            col_gdf["color"] = color_keys.map(key_to_color)
             filename = os.path.abspath(path + f"/{col}.png")
             if (not overwrite) and os.path.isfile(filename):
                 gdf = col_gdf.copy()
@@ -169,11 +207,16 @@ def image_layer_map(image_dict, m=None, add_layer_control=True, opacity=1.0):
         # bloats the saved HTML by the full size of every raster layer.
         img_bounds = [[info["bounds"][1], info["bounds"][0]],
                       [info["bounds"][3], info["bounds"][2]]]
+        # window.onload runs after every other inline <script> on the page,
+        # so the feature-group variable is guaranteed to exist by then
+        # regardless of where folium happens to place this element.
         m.get_root().html.add_child(folium.Element(f"""
         <script>
-        {fg.get_name()}.addLayer(
-            L.imageOverlay({json.dumps(f"raster_layers/{name}.png")}, {json.dumps(img_bounds)}, {{opacity: {opacity}}})
-        );
+        window.addEventListener("load", function() {{
+            {fg.get_name()}.addLayer(
+                L.imageOverlay({json.dumps(f"raster_layers/{name}.png")}, {json.dumps(img_bounds)}, {{opacity: {opacity}}})
+            );
+        }});
         </script>
         """))
 
@@ -334,19 +377,28 @@ def _to_bool(v) -> bool:
 
 
 # Project-specific (main.py only): collapse the consumed/produced icon list to
-# a single 🧺 for legibility. Any Gastronomie POI gets the single-arrow form
-# (they only consume); supermarkets (POIs producing Lebensmittel) get the
-# double-arrow ↔ form since they both receive and dispatch goods. Set
-# _BASKET_ICON_ENABLED = False (e.g. from a notebook) to disable entirely.
-_BASKET_SECTORS = {"Gastronomie"}
-_LEBENSMITTEL_GOOD_ID = 1  # good_id for Lebensmittel — marks supermarkets by what they produce
+# a single 🧺 for legibility, but only once a POI actually deals in enough
+# Lebensmittel-related goods to make listing them individually unreadable.
+# A POI gets the basket only if it produces or consumes MORE THAN
+# _BASKET_THRESHOLD distinct Lebensmittel-related goods (counting produced +
+# consumed together); otherwise its real product icons are shown as usual.
+# double-arrow ↔ form applies when it both produces and consumes some of
+# them. Set _BASKET_ICON_ENABLED = False (e.g. from a notebook) to disable
+# entirely.
+_LEBENSMITTEL_RELATED_NAMES = {
+    "Lebensmittel", "Getränke", "Brot", "Wein", "beer", "Honig",
+    "Landwirtschaftserzeugnisse", "Spargel", "Erdbeeren",
+}
+_BASKET_THRESHOLD = 3
 _BASKET_ICON_ENABLED = True
 
 
 def _export_pois(pois: gpd.GeoDataFrame, good_name_to_id: Dict[str, int]) -> Dict[str, dict]:
     out = {}
     pois4326 = pois.to_crs(4326) if pois.crs and pois.crs.to_epsg() != 4326 else pois
-    lebensmittel_id = str(good_name_to_id.get("Lebensmittel", _LEBENSMITTEL_GOOD_ID))
+    lebensmittel_related_ids = {
+        good_name_to_id[n] for n in _LEBENSMITTEL_RELATED_NAMES if n in good_name_to_id
+    }
     for idx, row in pois4326.iterrows():
         pid = row.get("poi_id", idx)
         produced_names = _parse_list(row.get("ProducedGoods"))
@@ -355,8 +407,10 @@ def _export_pois(pois: gpd.GeoDataFrame, good_name_to_id: Dict[str, int]) -> Dic
         consumed_ids = sorted({good_name_to_id[n] for n in consumed_names if n in good_name_to_id})
         geom = row.geometry
         sector = str(row.get("Sector", "") or "")
-        is_restaurant = sector in _BASKET_SECTORS
-        is_supermarket = lebensmittel_id in [str(g) for g in produced_ids]
+        related_produced = {g for g in produced_ids if g in lebensmittel_related_ids}
+        related_consumed = {g for g in consumed_ids if g in lebensmittel_related_ids}
+        related_count = len(related_produced | related_consumed)
+        show_basket = _BASKET_ICON_ENABLED and related_count > _BASKET_THRESHOLD
         out[str(int(pid))] = {
             "name": str(row.get("Company", "") or f"POI {pid}"),
             "address": str(row.get("Address", "") or ""),
@@ -368,8 +422,8 @@ def _export_pois(pois: gpd.GeoDataFrame, good_name_to_id: Dict[str, int]) -> Dic
             "produced": produced_ids,
             "consumed": consumed_ids,
             "mandatory": _to_bool(row.get("Mandatory")),
-            "basket": _BASKET_ICON_ENABLED and (is_restaurant or is_supermarket),
-            "basket_both": _BASKET_ICON_ENABLED and is_supermarket,
+            "basket": show_basket,
+            "basket_both": show_basket and bool(related_produced) and bool(related_consumed),
         }
     return out
 
@@ -680,6 +734,25 @@ def route_map(
 </div>
 """))
     m.get_root().html.add_child(folium.Element('<div id="goodsDetailBox"></div>'))
+
+    m.get_root().html.add_child(folium.Element("""
+<div id="instructionsBtn" onclick="window.openInstructions()" title="Anleitung / Instructions">?</div>
+<div id="instructionsOverlay">
+  <div id="instructionsModal">
+    <h3 data-i18n="instructions_title"></h3>
+    <ul>
+      <li data-i18n="instructions_item1"></li>
+      <li data-i18n="instructions_item2"></li>
+      <li data-i18n="instructions_item3"></li>
+      <li data-i18n="instructions_item4"></li>
+      <li data-i18n="instructions_item5"></li>
+    </ul>
+    <div class="actions">
+      <button onclick="window.closeInstructions()" data-i18n="instructions_close"></button>
+    </div>
+  </div>
+</div>
+"""))
 
     # ── LayerControl (hidden chrome; raster dropdown drives it) ─────────────
     folium.LayerControl(collapsed=False).add_to(m)

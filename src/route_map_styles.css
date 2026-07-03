@@ -358,3 +358,75 @@ body.hl2-active .leaflet-marker-icon:has(.dyn-product:not(.dyn-hl2)) {
 .maplegend-minmax { display: flex; justify-content: space-between; width: 200px; margin-top: 4px; }
 .maplegend-item { display: flex; align-items: center; margin-top: 4px; }
 .maplegend-swatch { width: 13px; height: 13px; border: 1px solid #555; margin-right: 6px; }
+/* ════════════════════════════════════════════════════════════════════
+   INSTRUCTIONS MODAL (shown on load, reopenable via #instructionsBtn)
+   ════════════════════════════════════════════════════════════════════ */
+#instructionsBtn {
+  position: fixed;
+  top: 14px;
+  right: 70px;
+  z-index: 1200;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid #cbd5e1;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+#instructionsOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 14, 32, 0.72);
+  z-index: 5000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+#instructionsOverlay.open { display: flex; }
+#instructionsModal {
+  background: #0b2d5c;
+  color: #fff;
+  max-width: 600px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 14px;
+  padding: 28px 32px;
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+#instructionsModal h3 {
+  color: #00fe7d;
+  margin-top: 0;
+  font-size: 22px;
+}
+#instructionsModal ul {
+  padding-left: 20px;
+  margin: 16px 0;
+}
+#instructionsModal li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+  font-size: 15px;
+}
+#instructionsModal .actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+#instructionsModal button {
+  font: inherit;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #00fe7d;
+  color: #06371f;
+}

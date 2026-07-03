@@ -43,7 +43,8 @@ def run(config: dict) -> None:
     car_cfg    = config["car"]
     ebike_cfg  = config["ebike"]
     score_cfg  = config["scoring"]
-    bf_cfg     = config["bikefriendliness"]
+    bike_score_cfg = config["bike_score"]
+    car_score_cfg  = config.get("car_score", {})
 
     pois_path         = paths["pois"]
     goods_path        = paths["goods"]
@@ -80,12 +81,15 @@ def run(config: dict) -> None:
     _BIKE_AVOID_FACTOR         = ebike_cfg.get("bike_avoid_factor", 50)
     ebike_maxspeeds            = ebike_cfg["maxspeeds"]
 
-    min_bikefriendliness      = score_cfg["min_bikefriendliness"]
-    max_travel_time_reduction = score_cfg["max_travel_time_reduction"]
-    max_bike_extra_time       = score_cfg["max_bike_extra_time"]
-    friendliness_weight       = score_cfg["friendliness_weight"]
-    time_weight               = score_cfg["time_weight"]
-    product_weight            = score_cfg["product_weight"]
+    min_bike_score              = score_cfg["min_bike_score"]
+    bike_travel_time_reduction  = score_cfg["bike_travel_time_reduction"]
+    max_bike_extra_time         = score_cfg["max_bike_extra_time"]
+    friendliness_weight         = score_cfg["friendliness_weight"]
+    time_weight                 = score_cfg["time_weight"]
+    product_weight              = score_cfg["product_weight"]
+
+    car_score_config            = car_score_cfg.get("config", {})
+    car_travel_time_reduction   = car_score_cfg.get("travel_time_reduction", 0.2)
 
     edge_selection = [
         'highway', 'lanes', 'bike_separation', 'pavement', 'access_restrictions',
@@ -93,7 +97,7 @@ def run(config: dict) -> None:
         'car_maxspeed', 'car_travel_time', 'car_avg_speed',
         'car_co2', 'ebike_maxspeed',
         'ebike_percieved_travel_time', 'ebike_avg_speed', 'ebike_travel_time',
-        'bikefriendliness',
+        'bike_score',
     ]
 
     # ── Load AOI ─────────────────────────────────────────────────────────────
@@ -245,10 +249,22 @@ def run(config: dict) -> None:
     os.makedirs(streets_path, exist_ok=True)
 
     # ── 2. Edge attributes ────────────────────────────────────────────────────
-    edges["car_maxspeed"] = routing.infer_maxspeed(edges, car_maxspeeds, enforce=False)
-    edges.loc[(edges["pavement"] == "cobblestone") & (edges["car_maxspeed"] > 30), "car_maxspeed"] = 30
-    edges.loc[(edges["pavement"] == "unpaved")     & (edges["car_maxspeed"] > 30), "car_maxspeed"] = 20
-    edges.loc[(edges["pavement"] == "landuse_unsuitable_for_cars"), "car_maxspeed"] = 0
+    # enforce=True: car_maxspeeds is fully authoritative, real OSM `maxspeed`
+    # tags are ignored. With enforce=False, ~74% of this project's
+    # residential edges carry an explicit tag (mostly 30 km/h) that would
+    # silently override the config value, making car_maxspeeds unreliable
+    # for tuning/testing routing preference (e.g. lowering "residential" to
+    # see cars detour via "tertiary" had ~no effect, since most residential
+    # edges kept their real tagged speed regardless of the config).
+    edges["car_maxspeed"] = routing.infer_maxspeed(edges, car_maxspeeds, enforce=True)
+    edges.loc[(edges["pavement"] == "cobblestone") & (edges["car_maxspeed"] > 20), "car_maxspeed"] = 20
+    edges.loc[(edges["pavement"] == "unpaved")     & (edges["car_maxspeed"] > 10), "car_maxspeed"] = 10
+    edges.loc[(edges["pavement"] == "landuse_unsuitable_for_cars"), "car_maxspeed"] = 1
+    # Non-motorized ways are heavily discouraged for cars but not hard-blocked
+    # -- a tiny nonzero speed keeps them technically routable as a last
+    # resort.
+    _CAR_ILLEGAL_HIGHWAYS = ["footway", "pedestrian", "cycleway", "path", "bridleway", "steps"]
+    edges.loc[edges["highway"].isin(_CAR_ILLEGAL_HIGHWAYS), "car_maxspeed"] = 1
     edges["car_travel_time"], edges["car_avg_speed"] = routing.travel_time(
         edges=edges,
         acceleration=car_acceleration,
@@ -263,10 +279,46 @@ def run(config: dict) -> None:
         edges, avg_speed_col="car_avg_speed", vehicle_type="gasoline_pc",
         maxspeed_col="car_maxspeed", return_total=False,
     )
+    # car_score prefers bigger/faster roads for route SELECTION only -- the
+    # real car_travel_time/car_avg_speed/car_co2 computed above are what get
+    # reported for the chosen route (see connections.py, which sums those
+    # real per-edge attributes along whatever path car_perceived_travel_time
+    # caused the router to pick). Mirrors the bike_score/perceived-time
+    # split below, but car_score is never shown on the map -- it's purely a
+    # routing weight, so unlike bike_score it isn't compressed onto a fixed
+    # 0-10 scale; it's scaled directly from car_score_config's own min/max.
+    if car_score_config:
+        edges["car_score"] = edges.apply(
+            lambda row: routing.compute_car_score(row, car_score_config), axis=1
+        )
+        _car_score_values = [v for crit in car_score_config.values() for v in crit["values"].values()]
+        car_score_min, car_score_max = min(_car_score_values), max(_car_score_values)
+        edges["car_perceived_travel_time"] = edges["car_travel_time"].copy()
+        if car_score_max > car_score_min:
+            r_car = car_travel_time_reduction
+            worst_car = 1 / (1 - r_car)
+            edges["car_perceived_travel_time"] = edges["car_travel_time"] * (
+                worst_car - (edges["car_score"] - car_score_min) * (worst_car - 1)
+                / (car_score_max - car_score_min)
+            )
+    else:
+        edges["car_score"] = np.nan
+        edges["car_perceived_travel_time"] = edges["car_travel_time"].copy()
+
     edges["ebike_maxspeed"] = routing.infer_maxspeed(edges, ebike_maxspeeds, enforce=True)
-    edges.loc[(edges["pavement"] == "cobblestone") & (edges["ebike_maxspeed"] > 10), "ebike_maxspeed"] = 10
-    edges.loc[(edges["pavement"] == "unpaved")     & (edges["ebike_maxspeed"] > 15), "ebike_maxspeed"] = 15
-    edges.loc[(edges["pavement"] == "landuse_unsuitable_for_cars"), "ebike_maxspeed"] = 5
+    edges.loc[(edges["pavement"] == "cobblestone") & (edges["ebike_maxspeed"] > 5), "ebike_maxspeed"] = 5
+    edges.loc[(edges["pavement"] == "unpaved")     & (edges["ebike_maxspeed"] > 5), "ebike_maxspeed"] = 5
+    edges.loc[(edges["pavement"] == "landuse_unsuitable_for_cars"), "ebike_maxspeed"] = 1
+    # Car-only high-speed roads are heavily discouraged (not hard-blocked)
+    # for bikes.
+    edges.loc[edges["highway"].isin(["motorway", "motorway_link", "trunk", "trunk_link"]), "ebike_maxspeed"] = 1
+    # Ways restricted to pedestrians only (not "pedestrian+bikes") are legal
+    # to walk a bike through but not to ride, hence the very low speed.
+    def _is_pedestrian_only(v):
+        if isinstance(v, (list, tuple, set)):
+            return "pedestrian" in v and "pedestrian+bikes" not in v
+        return v == "pedestrian"
+    edges.loc[edges["access_restrictions"].apply(_is_pedestrian_only), "ebike_maxspeed"] = 3
     edges["ebike_travel_time"], edges["ebike_avg_speed"] = routing.travel_time(
         edges=edges,
         acceleration=ebike_acceleration,
@@ -278,16 +330,16 @@ def run(config: dict) -> None:
         return_speed=True,
     )
     edges["ebike_percieved_travel_time"] = edges["ebike_travel_time"].copy()
-    edges["bikefriendliness"] = edges.apply(
-        lambda row: routing.compute_bikefriendliness(row, bf_cfg, min_bikefriendliness), axis=1
+    edges["bike_score"] = edges.apply(
+        lambda row: routing.compute_bike_score(row, bike_score_cfg, min_bike_score), axis=1
     )
-    r = max_travel_time_reduction
+    r = bike_travel_time_reduction
     worst = 1 / (1 - r)
     edges["ebike_percieved_travel_time"] = edges["ebike_travel_time"] * (
-        worst - (edges["bikefriendliness"] - 1) * (worst - 1) / 9
+        worst - (edges["bike_score"] - 1) * (worst - 1) / 9
     )
-    edges.loc[edges["bikefriendliness"] == 0, "ebike_percieved_travel_time"] = (
-        edges.loc[edges["bikefriendliness"] == 0, "ebike_travel_time"] * _BIKE_AVOID_FACTOR
+    edges.loc[edges["bike_score"] == 0, "ebike_percieved_travel_time"] = (
+        edges.loc[edges["bike_score"] == 0, "ebike_travel_time"] * _BIKE_AVOID_FACTOR
     )
 
     # ── 3. igraph ─────────────────────────────────────────────────────────────
@@ -336,8 +388,8 @@ def run(config: dict) -> None:
     connections_df["ebike_travel_timescore"] = x.apply(_time_score)
     x2 = connections_df["ebike_friendliness_route"]
     connections_df["ebike_route_score"] = np.where(
-        x2 <= min_bikefriendliness, 0,
-        np.where(x2 >= 10, 10, 1 + 9 * (x2 - min_bikefriendliness) / (10 - min_bikefriendliness))
+        x2 <= min_bike_score, 0,
+        np.where(x2 >= 10, 10, 1 + 9 * (x2 - min_bike_score) / (10 - min_bike_score))
     )
     connections_df["ebike_product_score"] = connections_df["Potential"]
     connections_df["ebike_score"] = (
@@ -497,6 +549,10 @@ def run(config: dict) -> None:
     loop_map_path = os.path.join(map_folder, "loop_map.html")
     m_routes.save(loop_map_path)
     print(f"  → saved loop_map.html to: {os.path.abspath(loop_map_path)}")
+
+    # ── 10. Sync index.html landing page texts with languages.json ──────────
+    from .build_index import build_index
+    build_index()
     print("Done ✓")
 
 

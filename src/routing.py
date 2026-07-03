@@ -623,14 +623,22 @@ def is_missing(value):
     return pd.isna(value)
 
 
-def compute_bikefriendliness(row, bikefriendliness_config, min_bikefriendliness=5):
-    """Compute bike friendliness score based on multiple attribute criteria."""
+def _weighted_criteria_score(row, score_config):
+    """Shared engine behind compute_bike_score / compute_car_score: a
+    weighted average over multiple (column, values-map, weight) criteria,
+    where a criterion's own matched value can mark other criteria as
+    "ignore" for this row (see the "ignore" key on each criterion).
+
+    Returns (weighted_average, hit_zero) -- hit_zero is True if any
+    (non-ignored) criterion scored exactly 0, which callers may treat as an
+    outright block signal.
+    """
     weighted_sum = 0
     total_weight = 0
     ignored = set()
 
     # Pass 1: find ignore rules
-    for crit_name, crit in bikefriendliness_config.items():
+    for crit_name, crit in score_config.items():
         col = crit["column"]
         value = row[col] if col in row.index else None
         if is_missing(value):
@@ -642,7 +650,7 @@ def compute_bikefriendliness(row, bikefriendliness_config, min_bikefriendliness=
                 ignored.update(ignore_rules[v])
 
     # Pass 2: compute scoring
-    for crit_name, criterion in bikefriendliness_config.items():
+    for crit_name, criterion in score_config.items():
         if crit_name in ignored:
             continue
         col = criterion["column"]
@@ -651,15 +659,24 @@ def compute_bikefriendliness(row, bikefriendliness_config, min_bikefriendliness=
         value = row[col]
         score = score_value(value, criterion)
         if score == 0:
-            return 0
+            return 0, True
         weighted_sum += score * criterion["weight"]
         total_weight += criterion["weight"]
 
     if total_weight == 0:
+        return np.nan, False
+    return weighted_sum / total_weight, False
+
+
+def compute_bike_score(row, bike_score_config, min_bike_score=5):
+    """Compute bike-friendliness score (0-10) based on multiple attribute criteria."""
+    score, hit_zero = _weighted_criteria_score(row, bike_score_config)
+    if hit_zero:
+        return 0
+    if np.isnan(score):
         return np.nan
 
-    score = weighted_sum / total_weight
-    if score < min_bikefriendliness:
+    if score < min_bike_score:
         # Previously this returned a hard 0, which main.py then turned into
         # an effectively infinite travel time -- making the edge completely
         # impassable rather than merely discouraged. Since OSM tags like
@@ -672,9 +689,23 @@ def compute_bikefriendliness(row, bikefriendliness_config, min_bikefriendliness=
         # edge stays heavily penalized -- routers will strongly prefer
         # friendlier alternatives -- but Dijkstra can still fall back to it
         # when doing so avoids an even larger detour.
-        return max(0.05, score / min_bikefriendliness)
+        return max(0.05, score / min_bike_score)
     else:
-        return 1 + (score - min_bikefriendliness) * 9 / (10 - min_bikefriendliness)
+        return 1 + (score - min_bike_score) * 9 / (10 - min_bike_score)
+
+
+def compute_car_score(row, car_score_config):
+    """Compute car road-preference score based on multiple attribute
+    criteria (currently just highway type). Unlike compute_bike_score this
+    returns the raw weighted average, on whatever scale the config's
+    "values" use -- car_score is only ever used (in pipeline.py) to scale
+    car_perceived_travel_time for route selection, never shown on the map,
+    so there's no need to compress it onto a fixed 0-10 display scale.
+    """
+    score, hit_zero = _weighted_criteria_score(row, car_score_config)
+    if hit_zero:
+        return 0
+    return score
 
 
 def score_value(value, criterion):

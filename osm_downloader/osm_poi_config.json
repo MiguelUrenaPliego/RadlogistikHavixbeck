@@ -88,11 +88,23 @@
       "consumes": ["drinks", "food", "bread", "wine", "beer", "honey"],
       "osm_tags": [
         {"amenity": "restaurant"},
-        {"amenity": "cafe"},
         {"amenity": "fast_food"},
         {"amenity": "food_court"},
         {"amenity": "biergarten"},
         {"amenity": "pub"}
+      ]
+    },
+    "cafe": {
+      "label": "Cafe",
+      "weight": "small",
+      "min_size": "small",
+      "max_size": "medium",
+      "size": "small",
+      "icon": "☕",
+      "produces": [],
+      "consumes": ["drinks", "bread"],
+      "osm_tags": [
+        {"amenity": "cafe"}
       ]
     },
     "supermarket": {
@@ -246,7 +258,7 @@
 
   "topic_to_poi_types": {
     "food": ["supermarket", "bakery", "food_market", "drink_shop", "winery", "brewery", "beekeeper"],
-    "gastronomy": ["gastronomy", "bar"],
+    "gastronomy": ["gastronomy", "cafe", "bar"],
     "healthcare": ["healthcare_provider"],
     "pharmacy": ["pharmacy"]
   },

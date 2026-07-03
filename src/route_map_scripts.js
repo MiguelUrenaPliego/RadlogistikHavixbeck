@@ -900,6 +900,18 @@
   };
 
   // ════════════════════════════════════════════════════════════════════
+  // INSTRUCTIONS MODAL
+  // ════════════════════════════════════════════════════════════════════
+  window.openInstructions = function () {
+    var el = document.getElementById("instructionsOverlay");
+    if (el) el.classList.add("open");
+  };
+  window.closeInstructions = function () {
+    var el = document.getElementById("instructionsOverlay");
+    if (el) el.classList.remove("open");
+  };
+
+  // ════════════════════════════════════════════════════════════════════
   // INIT
   // ════════════════════════════════════════════════════════════════════
   var _initDone = false;
@@ -916,6 +928,7 @@
     bindClickHandlers();
     applyTranslations();
     renderActiveLayer();
+    window.openInstructions();
 
     if (typeof L.control.scale === "function") {
       L.control.scale({ position: "topleft", imperial: false }).addTo(lmap);
@@ -1229,14 +1242,19 @@
       if (POIS[pid].mandatory) visiblePois.add(pid);
     });
 
-    // Everything else is visible only if it's a stop on at least one
-    // currently-visible loop (i.e. a loop with >=1 visible segment for the
-    // active layer/vehicle/product selection).
+    // Everything else is visible only if it's a stop on at least one loop
+    // in the active layer for the active product selection. This must NOT
+    // depend on which vehicle checkboxes are checked -- those only control
+    // which route lines get drawn (below), not which POIs show up.
     loops.forEach(function (loop) {
-      vehiclesToRender().forEach(function (vehicle) {
+      ["ebike", "car"].forEach(function (vehicle) {
         var resolved = resolveLoopLegs(loop, vehicle);
         if (!resolved.valid) return;
         resolved.stops.forEach(function (pid) { visiblePois.add(String(pid)); });
+      });
+      vehiclesToRender().forEach(function (vehicle) {
+        var resolved = resolveLoopLegs(loop, vehicle);
+        if (!resolved.valid) return;
         resolved.segments.forEach(function (seg) {
           setSegmentClass(seg, vehicle, true);
           visibleSegmentsByVehicle[vehicle].push(seg);

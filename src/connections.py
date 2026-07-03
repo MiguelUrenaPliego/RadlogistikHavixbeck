@@ -258,7 +258,7 @@ def route_connections(
 
         car_paths = g.get_shortest_paths(
             v=s_idx, to=target_idx_list,
-            weights="car_travel_time", output="epath"
+            weights="car_perceived_travel_time", output="epath"
         )
         ebike_paths = g.get_shortest_paths(
             v=s_idx, to=target_idx_list,
@@ -292,7 +292,7 @@ def route_connections(
                     e_time_orig += edge["ebike_travel_time"]
                     e_perc += edge["ebike_percieved_travel_time"]
                     e_dist += dist
-                    e_friend += edge["bikefriendliness"] * dist
+                    e_friend += edge["bike_score"] * dist
                 e_geom = build_linestring(e_path, s_idx)
                 e_friend = e_friend / e_dist if e_dist else None
             else:

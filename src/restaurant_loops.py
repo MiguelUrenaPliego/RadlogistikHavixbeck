@@ -110,7 +110,7 @@ def build_restaurant_supplier_loops(
         for sid in ordered[1:-1]:
             gids = sorted(supplier_products[sid])
             all_goods.update(gids)
-            legs.append({"poi_id": sid, "load_products": gids, "unload_products": [], "mandatory": True})
+            legs.append({"poi_id": sid, "load_products": gids, "unload_products": [], "mandatory": False})
         legs.append({
             "poi_id": rid, "load_products": [], "unload_products": sorted(all_goods), "mandatory": True,
         })
@@ -130,7 +130,7 @@ def build_restaurant_supplier_loops(
         ordered, _ = _solve_tsp_path(sid, stop_ids, car_times, max_stops)
         legs = [{"poi_id": sid, "load_products": gids, "unload_products": [], "mandatory": True}]
         for rid in ordered[1:-1]:
-            legs.append({"poi_id": rid, "load_products": [], "unload_products": gids, "mandatory": True})
+            legs.append({"poi_id": rid, "load_products": [], "unload_products": gids, "mandatory": False})
         legs.append({"poi_id": sid, "load_products": [], "unload_products": [], "mandatory": True})
         lebensmittel_loops.append(legs)
 

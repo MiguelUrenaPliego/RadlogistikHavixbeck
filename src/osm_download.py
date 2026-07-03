@@ -33,6 +33,7 @@ from shapely.geometry import Point
 
 _POI_TYPE_TO_SECTOR: dict[str, str] = {
     "gastronomy": "Gastronomie",
+    "cafe": "Gastronomie",
     "bar": "Gastronomie",
     "supermarket": "Lebensmittelhandel",
     "bakery": "Lebensmittelhandel",
