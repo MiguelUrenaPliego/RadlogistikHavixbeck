@@ -17,6 +17,11 @@
   var LAYERS = D.LAYERS || {};
   var LAYER_NAMES = D.LAYER_NAMES || {};
   var LAYER_ORDER = D.LAYER_ORDER || [];
+  // POI-only maps (poi_map(), no loops) group POIs into named layers instead
+  // (e.g. "all" vs "selection") — LAYER_ORDER stays empty for these.
+  var POI_LAYERS = D.POI_LAYERS || {};
+  var POI_LAYER_NAMES = D.POI_LAYER_NAMES || {};
+  var POI_LAYER_ORDER = D.POI_LAYER_ORDER || [];
   var PRODUCT_IDS = D.PRODUCT_IDS || [];
   var TRANSLATIONS = D.TRANSLATIONS || {};
   var CUSTOM_LAYER_KEYS = new Set(D.CUSTOM_LAYER_KEYS || []);
@@ -25,6 +30,7 @@
   var state = {
     lang: D.DEFAULT_LANG || "de",
     layerKey: LAYER_ORDER[0] || "producer",
+    poiLayerKey: POI_LAYER_ORDER[0] || null,
     vehicle: "ebike",          // "ebike" | "car" — last one toggled wins when both checked
     showEbike: true,
     showCar: false,
@@ -34,6 +40,16 @@
     // currently hovered (highlight-2) leg/poi info, used to know what to clear
     hoveredKey: null,
   };
+
+  /** POI ids belonging to the currently active POI layer (poi_map mode
+   * only) — falls back to every POI when no POI_LAYERS were exported
+   * (regular loop maps). */
+  function poisForActivePoiLayer() {
+    if (POI_LAYER_ORDER.length > 0) {
+      return POI_LAYERS[state.poiLayerKey] || [];
+    }
+    return Object.keys(POIS);
+  }
 
   function t(key) {
     var dict = TRANSLATIONS[state.lang] || TRANSLATIONS.de || {};
@@ -798,19 +814,24 @@
   function populateLayerDropdown() {
     var dd = document.getElementById("layerDropdown");
     if (!dd) return;
+    var isPoiMode = POI_LAYER_ORDER.length > 0;
+    var order = isPoiMode ? POI_LAYER_ORDER : LAYER_ORDER;
     dd.innerHTML = "";
-    LAYER_ORDER.forEach(function (key) {
+    order.forEach(function (key) {
       var opt = document.createElement("option");
       opt.value = key;
-      var label = LAYER_NAMES[key];
-      if (key === "producer") label = t("layer_producer");
-      if (key === "consumer") label = t("layer_consumer");
+      var label = isPoiMode ? (POI_LAYER_NAMES[key] || key) : LAYER_NAMES[key];
+      if (!isPoiMode) {
+        if (key === "producer") label = t("layer_producer");
+        if (key === "consumer") label = t("layer_consumer");
+      }
       opt.textContent = label;
       dd.appendChild(opt);
     });
-    dd.value = state.layerKey;
+    dd.value = isPoiMode ? state.poiLayerKey : state.layerKey;
     dd.addEventListener("change", function (e) {
-      state.layerKey = e.target.value;
+      if (isPoiMode) state.poiLayerKey = e.target.value;
+      else state.layerKey = e.target.value;
       if (state.isolation) clearIsolation();
       populateProductChecks();
       renderActiveLayer();
@@ -820,9 +841,18 @@
   /** Every good_id referenced by ANY leg of ANY loop in the currently
    * active layer — used to narrow the product checkbox list so it only
    * shows products that can actually appear, instead of every product
-   * across the whole map. */
+   * across the whole map. In poi_map mode (no loops), the equivalent is
+   * every good produced/consumed by a POI in the active POI layer. */
   function productIdsForActiveLayer() {
     var ids = new Set();
+    if (LAYER_ORDER.length === 0) {
+      poisForActivePoiLayer().forEach(function (pid) {
+        var poi = POIS[pid] || {};
+        (poi.produced || []).forEach(function (g) { ids.add(g); });
+        (poi.consumed || []).forEach(function (g) { ids.add(g); });
+      });
+      return Array.from(ids).sort(function (a, b) { return a - b; });
+    }
     loopsForActiveLayer().forEach(function (loop) {
       (loop.ebike_legs || []).concat(loop.car_legs || []).forEach(function (leg) {
         (leg.load_products || []).forEach(function (g) { ids.add(g); });
@@ -1253,9 +1283,17 @@
     var visiblePois = new Set();
     var visibleSegmentsByVehicle = { ebike: [], car: [] };
 
-    // In poi_map mode (no layers), all POIs are visible.
+    // In poi_map mode (no loop layers): show every POI in the active POI
+    // layer that either carries no goods at all, or has at least one
+    // produced/consumed good among the checked product filters.
     if (LAYER_ORDER.length === 0) {
-      Object.keys(POIS).forEach(function (pid) { visiblePois.add(pid); });
+      poisForActivePoiLayer().forEach(function (pid) {
+        var poi = POIS[pid] || {};
+        var goods = (poi.produced || []).concat(poi.consumed || []);
+        if (goods.length === 0 || goods.some(function (gid) { return state.activeProducts.has(String(gid)); })) {
+          visiblePois.add(String(pid));
+        }
+      });
     }
 
     // Base visibility: every POI flagged Mandatory=true is always shown.

@@ -554,6 +554,11 @@ def _export_layer(loops: List[DeliveryLoop], layer_key: str) -> List[dict]:
 # ─────────────────────────────────────────────────────────────────────────────
 # POI MARKERS
 # ─────────────────────────────────────────────────────────────────────────────
+# Shared with poi_selection_map() below, which shows exactly these two groups.
+RESTAURANT_POIS = {42, 43, 44, 45, 47, 48, 49, 50}
+TILBECK_POIS = {34}
+
+
 def _add_poi_markers(m: folium.Map, pois: gpd.GeoDataFrame, goods_export: Dict[str, dict]) -> None:
     folium.map.CustomPane("poiPane", z_index=650).add_to(m)
     fg = folium.FeatureGroup(name="__pois__", overlay=True, show=True, control=False)
@@ -568,11 +573,9 @@ def _add_poi_markers(m: folium.Map, pois: gpd.GeoDataFrame, goods_export: Dict[s
             continue
         base_icon = str(row.get("Icon", "") or "🏠")
 
-        _RESTAURANT_POIS = {42, 43, 44, 45, 47, 48, 49, 50}
-        _TILBECK_POIS = {34}
-        if pid in _RESTAURANT_POIS:
+        if pid in RESTAURANT_POIS:
             extra_class = " poi-restaurant"
-        elif pid in _TILBECK_POIS:
+        elif pid in TILBECK_POIS:
             extra_class = " poi-tilbeck"
         else:
             extra_class = ""
@@ -772,8 +775,18 @@ def poi_map(
 ) -> folium.Map:
     """Build a POI-only map: raster background layers + POI markers + goods boxes.
 
-    No routes or loops are rendered. All goods boxes are shown (not filtered
-    by loop coverage). Use this as a quick overview before running routing.
+    No routes or loops are rendered. A layer dropdown (reusing the same
+    #layerDropdown widget the loop map uses) switches which POI group is
+    shown:
+      - "all": every POI that handles at least one viable good (has both a
+        producer and a consumer somewhere in the dataset) — the map's
+        original behaviour.
+      - "selection": just the restaurant group (blue markers) and the Stift
+        Tilbeck group (red markers), regardless of goods viability.
+    Product checkboxes further narrow visibility within whichever group is
+    active, same as the loop map's product filter but applied directly to
+    POIs (no loops here) — see the `LAYER_ORDER.length === 0` branch of
+    renderActiveLayer() in route_map_scripts.js.
     """
     pois = pois.copy()
     if "poi_id" not in pois.columns:
@@ -793,10 +806,14 @@ def poi_map(
     good_name_to_id = _good_name_to_id(goods)
     goods_export = _export_goods(goods)
 
-    # Only expose goods that have at least one producer AND one consumer in
-    # the dataset — orphaned goods (consumed but never produced, or produced
-    # but never consumed) clutter the map and can never form a real delivery.
+    # All POIs are exported (unfiltered) so either layer can look any of them
+    # up client-side; POI_LAYERS below controls which subset is *visible*.
     pois_export_full = _export_pois(pois, good_name_to_id)
+
+    # "all" layer: only expose POIs whose goods have at least one producer
+    # AND one consumer in the dataset — orphaned goods (consumed but never
+    # produced, or produced but never consumed) clutter the map and can
+    # never form a real delivery.
     from collections import defaultdict as _dd
     _producers_of: dict = _dd(set)
     _consumers_of: dict = _dd(set)
@@ -810,22 +827,31 @@ def poi_map(
         if _producers_of[_g] and _consumers_of[_g]
     )
     viable_good_id_set = set(viable_good_ids)
+    all_layer_ids = [
+        pid for pid, data in pois_export_full.items()
+        if any(g in viable_good_id_set for g in data.get("produced", []) + data.get("consumed", []))
+    ]
 
-    # Filter POIs to those that handle at least one viable good.
-    pois_export = {
-        pid: data for pid, data in pois_export_full.items()
-        if any(g in viable_good_id_set
-               for g in data.get("produced", []) + data.get("consumed", []))
-    }
-    pois_for_markers = pois[pois["poi_id"].astype(str).isin(pois_export.keys())]
+    # "selection" layer: restaurants + Stift Tilbeck, no viability filtering
+    # (it's a handful of specific POIs, not meant to round-trip goods among
+    # just themselves).
+    selection_ids = RESTAURANT_POIS | TILBECK_POIS
+    selection_layer_ids = [pid for pid in pois_export_full if int(pid) in selection_ids]
+
+    poi_layers = {"all": all_layer_ids, "selection": selection_layer_ids}
+    poi_layer_names = {"all": "Alle POIs", "selection": "Restaurants & Stift Tilbeck"}
+    poi_layer_order = ["all", "selection"]
 
     map_data = {
         "GOODS": goods_export,
-        "POIS": pois_export,
+        "POIS": pois_export_full,
         "PAIRS": {},
         "LAYERS": {},
         "LAYER_NAMES": {},
         "LAYER_ORDER": [],
+        "POI_LAYERS": poi_layers,
+        "POI_LAYER_NAMES": poi_layer_names,
+        "POI_LAYER_ORDER": poi_layer_order,
         "PRODUCT_IDS": viable_good_ids,
         "DEFAULT_LANG": default_lang,
         "CUSTOM_LAYER_KEYS": [],
@@ -841,8 +867,16 @@ def poi_map(
     with open(os.path.join(DIR_NAME, "route_map_styles.css"), "r", encoding="utf-8") as f:
         css_content = f.read()
     m.get_root().html.add_child(folium.Element(f"<style>{css_content}</style>"))
+    # Tilbeck's default marker colour (route_map_styles.css) is pink; make it
+    # red so it contrasts with the blue restaurant group in the "selection"
+    # layer (harmless in the "all" layer too).
+    m.get_root().html.add_child(folium.Element(
+        "<style>.poi.poi-tilbeck .poi-inner { background: #fecaca; }</style>"
+    ))
 
-    _add_poi_markers(m, pois_for_markers, goods_export)
+    # All markers are always in the DOM (same pattern as the loop map);
+    # visibility is toggled client-side via the "pv" class.
+    _add_poi_markers(m, pois, goods_export)
 
     m.get_root().html.add_child(folium.Element(
         f"<script>window.MAP_DATA = {json.dumps(map_data)};</script>"

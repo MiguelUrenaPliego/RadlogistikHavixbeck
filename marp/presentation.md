@@ -9,14 +9,18 @@ html: true
 Configuration
 =============
 - Every slide taken "directly from the PDF" embeds presentation_base.pdf
-  live at a given page via <iframe class="pdf-embed" src="presentation_base.pdf#page=N...">
+  live at a given page via <iframe class="pdf-embed" src="presentation_base.pdf?p=N#page=N...">
   — there is no image conversion step, so editing presentation_base.pdf is
   immediately reflected the next time this presentation is opened. Nothing
   in this file needs to change when the PDF's content changes, only when
   the PAGE COUNT or the set of pages you want to show changes.
+  The "?p=N" query string (duplicating the #page=N fragment) is required:
+  Chromium collapses multiple <iframe>s that share an identical src URL
+  into one cached PDF plugin instance, so without a per-slide-unique query
+  string, slides after the first would silently show a stale/wrong page.
 - To choose which pages appear, just add/remove/reorder the slides below —
-  each one is a single <iframe class="pdf-embed" ...#page=N> line, plus the
-  slide-class comment above it.
+  each one is a single <iframe class="pdf-embed" ...?p=N#page=N> line, plus
+  the slide-class comment above it.
 - presentation_base.pdf currently has 17 pages. The title slide always
   shows page 2 (title/authors/logos). Any slide that does NOT come
   directly from the PDF (e.g. the map slide) must use class "custom-slide"
@@ -39,17 +43,17 @@ Configuration
 -->
 
 <!-- _class: title -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=2&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=2#page=2&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=3&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=3#page=3&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: custom-slide map-slide -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=17&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=17#page=17&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 <div class="map-frame">
   <iframe class="map-embed" data-layer="custom_2" src="../loop_map.html"></iframe>
@@ -58,92 +62,66 @@ Configuration
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=4&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=4#page=4&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=5&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=5#page=5&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=6&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=6#page=6&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=7&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=7#page=7&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=8&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=8#page=8&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=9&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=9#page=9&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=10&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=10#page=10&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=11&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=11#page=11&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=12&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=12#page=12&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=13&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=13#page=13&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=14&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=14#page=14&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=15&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=15#page=15&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf#page=16&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<iframe class="pdf-embed" src="presentation_base.pdf?p=16#page=16&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
-<script>
-(function () {
-  // The map lives at a different file:// path, so it has an opaque "null"
-  // origin — reaching into its contentDocument is blocked by the browser.
-  // postMessage still works across that boundary, and loop_map.html only
-  // reacts to it when embedded like this; opened directly it behaves
-  // exactly as before (see the "message" listener in route_map_scripts.js).
-  function wireMapEmbed(iframe) {
-    function send() {
-      var layer = iframe.dataset.layer;
-      if (layer) iframe.contentWindow.postMessage({ type: "setLayer", layer: layer }, "*");
-      iframe.contentWindow.postMessage({ type: "closeInstructions" }, "*");
-    }
-    // Repeat for a couple of seconds: the map needs time to initialise
-    // (Leaflet + dropdown population) after the iframe's load event fires.
-    iframe.addEventListener("load", function () {
-      var tries = 0;
-      var timer = setInterval(function () {
-        send();
-        tries += 1;
-        if (tries > 10) clearInterval(timer);
-      }, 300);
-    });
-  }
-  document.querySelectorAll("iframe.map-embed").forEach(wireMapEmbed);
-})();
-</script>
+<script src="map_embed.js"></script>
