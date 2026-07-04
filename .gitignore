@@ -17,3 +17,5 @@ streets/
 aoi/*
 # ...except this file
 !aoi/aoi.gpkg
+
+references

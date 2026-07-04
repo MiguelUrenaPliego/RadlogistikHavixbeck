@@ -35,7 +35,7 @@ MAX_RADIUS         = 5000    # meters — producer loops only
 MAX_ADDED_DISTANCE = 250     # meters — max detour before splitting a loop
 
 # ── Car routing ───────────────────────────────────────────────────────────────
-car_node_penalty          = 1
+car_node_penalty          = 2
 car_acceleration          = 1.5
 car_min_cruising_time     = 2
 car_min_cruising_speed    = 10
@@ -198,7 +198,7 @@ bike_score_config = {
             "secondary":      2,
             "path":          10,
             "unclassified":   1,
-            "tertiary":       5,
+            "tertiary":       3,
             "service":        8,
             "track":         10,
             "residential":   10,
