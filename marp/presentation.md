@@ -8,19 +8,20 @@ html: true
 <!--
 Configuration
 =============
-- Every slide taken "directly from the PDF" embeds presentation_base.pdf
-  live at a given page via <iframe class="pdf-embed" src="presentation_base.pdf?p=N#page=N...">
-  — there is no image conversion step, so editing presentation_base.pdf is
-  immediately reflected the next time this presentation is opened. Nothing
-  in this file needs to change when the PDF's content changes, only when
-  the PAGE COUNT or the set of pages you want to show changes.
-  The "?p=N" query string (duplicating the #page=N fragment) is required:
-  Chromium collapses multiple <iframe>s that share an identical src URL
-  into one cached PDF plugin instance, so without a per-slide-unique query
-  string, slides after the first would silently show a stale/wrong page.
+- Every slide taken "directly from the PDF" shows a given page of
+  presentation_base.pdf as a pre-rendered JPG via
+  <img class="pdf-embed" src="pdf_pages/page-N.jpg" data-pdf-page="N">.
+  This used to be a live <iframe> straight into the PDF, but mobile
+  browsers (iOS Safari, Android Chrome) have no built-in PDF viewer plugin
+  for iframes — they just showed a fallback "open presentation_base.pdf"
+  link there instead of the page. Pre-rendered images work everywhere.
+  This DOES mean the images go stale when presentation_base.pdf changes —
+  run `python3 marp/render_pdf_pages.py` afterwards to regenerate every
+  pdf_pages/page-N.jpg referenced by a data-pdf-page="N" attribute below.
 - To choose which pages appear, just add/remove/reorder the slides below —
-  each one is a single <iframe class="pdf-embed" ...?p=N#page=N> line, plus
-  the slide-class comment above it.
+  each one is a single <img class="pdf-embed" ...data-pdf-page="N"> line,
+  plus the slide-class comment above it. After adding/removing a page
+  number, rerun render_pdf_pages.py so its JPG exists.
 - presentation_base.pdf currently has 17 pages. The title slide always
   shows page 2 (title/authors/logos). Any slide that does NOT come
   directly from the PDF (e.g. the map slide) must use class "custom-slide"
@@ -43,17 +44,17 @@ Configuration
 -->
 
 <!-- _class: title -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=2#page=2&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-2.jpg" data-pdf-page="2" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=3#page=3&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-3.jpg" data-pdf-page="3" alt="">
 
 ---
 
 <!-- _class: custom-slide map-slide -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=17#page=17&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-17.jpg" data-pdf-page="17" alt="">
 
 <div class="map-frame">
   <iframe class="map-embed" data-layer="custom_2" src="../loop_map.html"></iframe>
@@ -62,67 +63,66 @@ Configuration
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=4#page=4&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-4.jpg" data-pdf-page="4" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=5#page=5&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-5.jpg" data-pdf-page="5" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=6#page=6&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-6.jpg" data-pdf-page="6" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=7#page=7&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-7.jpg" data-pdf-page="7" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=8#page=8&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-8.jpg" data-pdf-page="8" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=9#page=9&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-9.jpg" data-pdf-page="9" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=10#page=10&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-10.jpg" data-pdf-page="10" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=11#page=11&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-11.jpg" data-pdf-page="11" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=12#page=12&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-12.jpg" data-pdf-page="12" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=13#page=13&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-13.jpg" data-pdf-page="13" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=14#page=14&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-14.jpg" data-pdf-page="14" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=15#page=15&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-15.jpg" data-pdf-page="15" alt="">
 
 ---
 
 <!-- _class: pdf-page -->
-<iframe class="pdf-embed" src="presentation_base.pdf?p=16#page=16&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
+<img class="pdf-embed" src="pdf_pages/page-16.jpg" data-pdf-page="16" alt="">
 
 <script src="map_embed.js"></script>
-<script src="pdf_embed_fix.js"></script>

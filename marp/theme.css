@@ -13,15 +13,15 @@ section {
   overflow: hidden;
 }
 
-/* Full-bleed PDF page: the PDF itself is embedded live (no pre-rendered
-   image), so edits to presentation_base.pdf show up next time the slide
-   is opened — nothing to regenerate. */
-iframe.pdf-embed {
+/* Full-bleed PDF page, pre-rendered to a JPG by render_pdf_pages.py (see
+   the config comment at the top of presentation.md) — object-fit: contain
+   matches the "view=Fit" behavior the old live-PDF <iframe> used. */
+img.pdf-embed {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  border: 0;
+  object-fit: contain;
   z-index: 0;
   pointer-events: none;
 }
