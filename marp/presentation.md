@@ -125,3 +125,4 @@ Configuration
 <iframe class="pdf-embed" src="presentation_base.pdf?p=16#page=16&toolbar=0&navpanes=0&scrollbar=0&view=Fit"></iframe>
 
 <script src="map_embed.js"></script>
+<script src="pdf_embed_fix.js"></script>
