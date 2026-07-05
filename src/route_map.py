@@ -169,6 +169,22 @@ def create_background_layers(data, path, overwrite=False, dpi=1500):
                 unmapped = sorted(set(color_keys.unique()) - set(key_to_color))
                 for i, k in enumerate(unmapped):
                     key_to_color[k] = base_colors[i % len(base_colors)]
+            elif col == "bike_separation":
+                # Drawn (and legend-ordered) worst-to-best so that a stricter
+                # restriction always wins visually where segments overlap:
+                # prohibited > complete > soft > mixed > none.
+                color_keys = col_gdf[col]
+                key_to_color = {
+                    "none":       "#bdbdbd",
+                    "mixed":      "#5f27cd",
+                    "soft":       "#f9a825",
+                    "complete":   "#1b5e20",
+                    "prohibited": "#c62828",
+                }
+                z_order = ["none", "mixed", "soft", "complete", "prohibited"]
+                col_gdf["_z"] = color_keys.map({k: i for i, k in enumerate(z_order)}).fillna(-1)
+                col_gdf = col_gdf.sort_values("_z").drop(columns="_z")
+                color_keys = col_gdf[col]
             else:
                 color_keys = col_gdf[col]
                 unique_keys = sorted(color_keys.unique())
