@@ -60,6 +60,17 @@ Configuration
 
 ---
 
+<!-- _class: pdf-page url-slide -->
+<img class="pdf-embed" src="pdf_pages/page-1.jpg" data-pdf-page="1" alt="">
+
+<div class="url-text">
+Diese Präsentation ist im interaktiven Format unter<br>
+<a href="https://miguelurenapliego.github.io/RadlogistikHavixbeck/">https://miguelurenapliego.github.io/RadlogistikHavixbeck/</a><br>
+verfügbar
+</div>
+
+---
+
 <!-- _class: pdf-page -->
 <img class="pdf-embed" src="pdf_pages/page-4.jpg" data-pdf-page="4" alt="">
 
