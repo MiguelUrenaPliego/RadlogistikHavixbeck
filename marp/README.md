@@ -36,10 +36,11 @@ see the config comment at the top of `presentation.md`), regenerate them:
 python3 marp/render_pdf_pages.py
 ```
 
-It reads every `data-pdf-page="N"` in `presentation.md` and re-renders
-`pdf_pages/page-N.jpg` from `presentation_base.pdf` accordingly. Requires
-`pdftoppm` (poppler-utils): `apt install poppler-utils` / `brew install
-poppler`.
+It re-renders `pdf_pages/page-N.jpg` for every page of
+`presentation_base.pdf` (not just the ones currently used in
+`presentation.md`), so `pdf_pages/page-N.jpg` is always PDF page N.
+Requires `pdftoppm`/`pdfinfo` (poppler-utils): `apt install poppler-utils`
+/ `brew install poppler`.
 
 Then rebuild `presentation.html` from `presentation.md` (via VS Code's
 Marp "Export as HTML", or `npx @marp-team/marp-cli presentation.md -o

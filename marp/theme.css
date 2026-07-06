@@ -51,10 +51,26 @@ section.map-slide iframe.map-embed {
 /* ── Page number (added by the theme only — never baked into a slide's
    content) ───────────────────────────────────────────────────────────── */
 section::after {
-  color: #fff;
-  font-size: 12px;
-  bottom: 14px;
-  left: 18px;
-  right: auto;
-  top: auto;
+  color: #fff !important;
+  opacity: 1 !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  bottom: 14px !important;
+  left: 18px !important;
+  right: auto !important;
+  top: auto !important;
+}
+
+/* ── Footer (from the `footer:` front-matter directive; suppressed on the
+   title slide via `<!-- _footer: "" -->`) — sits directly to the right of
+   the page number, same bottom-left corner ────────────────────────────── */
+section footer {
+  bottom: 14px !important;
+  left: 40px !important;
+  right: auto !important;
+  top: auto !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
 }
