@@ -1017,7 +1017,7 @@
         {
           "poi_id": 34,
           "load_products": [
-            14
+            14,1
           ],
           "unload_products": [],
           "mandatory": true
@@ -1031,10 +1031,10 @@
           "mandatory": true
         },
         {
-          "poi_id": 51,
+          "poi_id": 79,
           "load_products": [],
           "unload_products": [
-            14
+            1
           ],
           "mandatory": false
         },
