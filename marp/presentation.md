@@ -3,7 +3,7 @@ marp: true
 theme: FUAS
 paginate: true
 html: true
-footer: '07.06.2026 - Frankfurt University of Applied Sciences - Radlogistik'
+footer: '07.07.2026 - Frankfurt University of Applied Sciences - Radlogistik'
 ---
 
 <!--
