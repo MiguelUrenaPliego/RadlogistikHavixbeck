@@ -25,11 +25,20 @@ Configuration
   plus the slide-class comment above it. The data-pdf-page attribute must
   match the real page number of the PDF, which is also the filename
   (pdf_pages/page-N.jpg is always PDF page N).
-- presentation_base.pdf currently has 31 pages. The title slide always
-  shows page 3 (title/authors/logos). Any slide that does NOT come
-  directly from the PDF (e.g. the map slide) must use class "custom-slide"
-  and show the PDF's LAST page (currently 31) as its background — update
-  that page number here if pages are added/removed from the PDF.
+- presentation_base.pdf currently has 32 pages. The title slide always
+  shows page 3 (title/authors/logos). Page 1 (and the new trailing page
+  32) are plain background-only pages with no text/map screenshot baked
+  in — custom slides (e.g. the map slides) that need a clean background to
+  overlay content on use page 32 for that reason. Page 2 (the "available
+  online" pointer) and page 31 ("Vielen Dank") exist in the PDF but are
+  intentionally not shown as their own slides: page 2 is redundant since
+  this .md file already *is* the interactive version, and page 31 was
+  never wired into the deck (kept out here to match prior behavior). If
+  pages are added/removed from the PDF, re-check which page numbers below
+  still point at the right content — this file was last hand-verified
+  page-by-page against a 32-page PDF that inserted a blank leading page, a
+  Quellen (sources) slide, and a blank trailing page relative to the prior
+  31-page version.
 - The footer text in the front matter above (and the page number next to
   it, bottom-left on every slide) is set once per presentation — edit the
   `footer:` value before presenting. Both are suppressed on the title
@@ -57,17 +66,6 @@ Configuration
 <!-- _footer: "" -->
 <!-- _paginate: false -->
 <img class="pdf-embed" src="pdf_pages/page-3.jpg" data-pdf-page="3" alt="">
-
----
-
-<!-- _class: pdf-page url-slide -->
-<img class="pdf-embed" src="pdf_pages/page-1.jpg" data-pdf-page="1" alt="">
-
-<div class="url-text">
-Diese Präsentation ist im interaktiven Format unter<br>
-<a href="https://miguelurenapliego.github.io/RadlogistikHavixbeck/">https://miguelurenapliego.github.io/RadlogistikHavixbeck/</a><br>
-verfügbar
-</div>
 
 ---
 
@@ -132,7 +130,7 @@ verfügbar
 ---
 
 <!-- _class: custom-slide map-slide -->
-<img class="pdf-embed" src="pdf_pages/page-16.jpg" data-pdf-page="31" alt="">
+<img class="pdf-embed" src="pdf_pages/page-32.jpg" data-pdf-page="32" alt="">
 
 <div class="map-frame">
   <iframe class="map-embed" data-layer="custom_2" src="../poi_map.html"></iframe>
@@ -166,14 +164,13 @@ verfügbar
 ---
 
 <!-- _class: custom-slide map-slide -->
-<img class="pdf-embed" src="pdf_pages/page-22.jpg" data-pdf-page="31" alt="">
+<img class="pdf-embed" src="pdf_pages/page-32.jpg" data-pdf-page="32" alt="">
 
 <div class="map-frame">
-  <iframe class="map-embed" data-layer="custom_2" src="../loop_map.html"></iframe>
+  <iframe class="map-embed" data-layer="producer" src="../loop_map.html"></iframe>
 </div>
 
 ---
-
 
 <!-- _class: pdf-page -->
 <img class="pdf-embed" src="pdf_pages/page-23.jpg" data-pdf-page="23" alt="">

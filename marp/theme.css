@@ -48,33 +48,6 @@ section.map-slide iframe.map-embed {
   background: #fff;
 }
 
-/* ── URL slide (big overlay text on top of a full-bleed background
-   image) ─────────────────────────────────────────────────────────────── */
-section.url-slide .url-text {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 6%;
-  font-size: 1.8em;
-  font-weight: 600;
-  line-height: 1.6;
-  color: #fff;
-  overflow-wrap: break-word;
-  max-width: 100%;
-}
-
-section.url-slide .url-text a {
-  color: #2ee6a6;
-  font-size: 0.5em;
-  max-width: 100%;
-  overflow-wrap: break-word;
-}
-
 /* ── Page number (added by the theme only — never baked into a slide's
    content) ───────────────────────────────────────────────────────────── */
 section::after {
