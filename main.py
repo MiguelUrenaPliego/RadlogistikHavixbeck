@@ -36,6 +36,12 @@ MAX_ADDED_DISTANCE = 250     # meters — max detour before splitting a loop
 
 # ── Car routing ───────────────────────────────────────────────────────────────
 car_node_penalty          = 2
+# Signalised intersections (OSM highway=traffic_signals) get their own, larger
+# fixed delay instead of car_node_penalty: HCM 7th ed. Ch. 18-19 signalised
+# control-delay LOS bands put LOS B/C (a plausible band for this town's
+# low/medium-volume actuated signals) at roughly 10-35s -- see
+# references/routing_parameter_justification.md §1.
+car_traffic_light_penalty = 15
 car_acceleration          = 1.5
 car_min_cruising_time     = 2
 car_min_cruising_speed    = 10
@@ -43,12 +49,12 @@ car_max_stop_and_go_speed = 20
 car_stopping_time         = 3   # minutes
 
 car_maxspeeds = {
-    "living_street":  15,
+    "living_street":  7,    # StVO Anlage 3 (verkehrsberuhigter Bereich): Schrittgeschwindigkeit
     "motorway":       100,
     "motorway_link":  60,
     "primary":        60,
     "primary_link":   60,
-    "residential":    15,
+    "residential":    30,   # StVO innerorts default (Tempo-30-Zone / geschlossene Ortschaft)
     "secondary":      55,
     "secondary_link": 55,
     "service":        30,
@@ -65,6 +71,10 @@ car_maxspeeds = {
 
 # ── E-bike routing ────────────────────────────────────────────────────────────
 ebike_node_penalty           = 0.5
+# At a red signal a cyclist must wait out the phase just like a driver, so
+# unlike the unsignalised node_penalty (where bikes can roll through gaps
+# cars can't), the signalised penalty is set equal to the car value.
+ebike_traffic_light_penalty  = 15
 ebike_acceleration           = 2
 ebike_min_cruising_time      = 1
 ebike_min_cruising_speed     = 5
@@ -73,25 +83,38 @@ bike_stopping_time           = 0  # minutes
 _BIKE_AVOID_FACTOR           = 50
 
 ebike_maxspeeds = {
-    "living_street":  15,
+    # Pedelecs are motor-assisted only up to 25 km/h in Germany (StVZO); above
+    # that no license/insurance/helmet exemption applies, so 25 km/h is the
+    # legal ceiling for the license-free E-Lastenrad assumed throughout this
+    # project. On ways shared with cars the bike is additionally capped by
+    # the car's own maxspeed where that is lower (e.g. living_street's
+    # Schrittgeschwindigkeit); ways shared with pedestrians are capped at
+    # 10 km/h regardless of road class.
+    "living_street":  7,    # same StVO Schrittgeschwindigkeit requirement applies to cyclists
     "motorway":        1,
     "motorway_link":   1,
-    "primary":        20,
-    "primary_link":   20,
-    "residential":    15,
-    "secondary":      18,
-    "secondary_link": 18,
-    "service":        15,
-    "tertiary":       15,
-    "tertiary_link":  15,
-    "trunk":          20,
-    "trunk_link":     20,
-    "unclassified":   15,
+    "primary":        25,
+    "primary_link":   25,
+    "residential":    25,
+    "secondary":      25,
+    "secondary_link": 25,
+    "service":        25,
+    "tertiary":       25,
+    "tertiary_link":  25,
+    "trunk":          25,
+    "trunk_link":     25,
+    "unclassified":   25,
+    "track":          20,   # unpaved rural/farm track, mixed use but not primarily pedestrian
+    "path":           10,   # generic way, commonly shared with pedestrians
+    "footway":        10,
+    "pedestrian":     10,
+    "bridleway":      10,
+    "cycleway":       25,   # bike-only infrastructure
 }
 
 # ── Bike scoring ──────────────────────────────────────────────────────────────
 min_bike_score              = 5
-bike_travel_time_reduction  = 0.4   # 40% perceived time reduction at best
+bike_travel_time_reduction  = 0.16  # 16% perceived time reduction at best (Broach, Dill & Gliebe, 2012)
 max_bike_extra_time         = 0.1   # 10% extra over car is still acceptable
 friendliness_weight         = 3
 time_weight                 = 4
@@ -104,7 +127,7 @@ product_weight              = 3
 # rating). car_travel_time_reduction plays the same role as
 # bike_travel_time_reduction above: the fraction by which perceived time on
 # the best-scoring road is reduced relative to the worst-scoring one.
-car_travel_time_reduction = 0.2
+car_travel_time_reduction = 0.1
 
 car_score_config = {
     "highway": {
@@ -268,6 +291,7 @@ config = {
     },
     "car": {
         "node_penalty":          car_node_penalty,
+        "traffic_light_penalty": car_traffic_light_penalty,
         "acceleration":          car_acceleration,
         "min_cruising_time":     car_min_cruising_time,
         "min_cruising_speed":    car_min_cruising_speed,
@@ -277,6 +301,7 @@ config = {
     },
     "ebike": {
         "node_penalty":          ebike_node_penalty,
+        "traffic_light_penalty": ebike_traffic_light_penalty,
         "acceleration":          ebike_acceleration,
         "min_cruising_time":     ebike_min_cruising_time,
         "min_cruising_speed":    ebike_min_cruising_speed,

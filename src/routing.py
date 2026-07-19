@@ -231,11 +231,28 @@ def travel_time(
     maxspeed_col: str = "maxspeed",
     length_col: str = "length",
     return_speed: bool = False,
+    traffic_light_penalty: Optional[float] = None,
+    has_traffic_light_col: Optional[str] = None,
 ) -> Union[List[float], Tuple[List[float], List[float]]]:
-    """Compute travel time and optionally average speed for graph edges."""
+    """Compute travel time and optionally average speed for graph edges.
+
+    If `has_traffic_light_col` is given, edges flagged True in that column use
+    `traffic_light_penalty` instead of `node_penalty` -- a signalised
+    intersection incurs a different (larger) fixed delay than an
+    unsignalised/priority junction, see references/routing_parameter_justification.md §1.
+    """
     edges = edges.copy()
     edges[maxspeed_col] = edges[maxspeed_col].astype(float)
     edges[length_col] = edges[length_col].astype(float)
+
+    def _node_penalty(row):
+        if (
+            has_traffic_light_col is not None
+            and traffic_light_penalty is not None
+            and bool(row.get(has_traffic_light_col, False))
+        ):
+            return traffic_light_penalty
+        return node_penalty
 
     edges["travel_time"] = edges.apply(
         lambda row: travel_time_row(
@@ -245,7 +262,7 @@ def travel_time(
             min_cruising_speed,
             min_cruising_time,
             max_stop_and_go_speed,
-        ) + node_penalty,
+        ) + _node_penalty(row),
         axis=1,
     )
 

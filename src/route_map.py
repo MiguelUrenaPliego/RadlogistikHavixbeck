@@ -93,6 +93,64 @@ def render_gdf(gdf, filename, dpi=1500):
     return filename, (minx, miny, maxx, maxy)
 
 
+def render_intersections(
+    nodes,
+    edges,
+    filename,
+    dpi=1500,
+    signal_size=14,
+    nonsignal_size=1,
+    signal_color="#d7263d",
+    nonsignal_color="#2e7d32",
+    overwrite=False,
+):
+    """Render a point layer of graph intersections: big red dots for
+    signalised intersections (OSM `highway=traffic_signals`), small green
+    dots for other (non-signalised) intersections. A node only counts as an
+    "intersection" if it connects to 3+ distinct neighbouring nodes -- a
+    plain point on a through-road (2 neighbours) is not drawn.
+    """
+    def _is_signal(h):
+        if isinstance(h, (list, tuple, set)):
+            return "traffic_signals" in h
+        return h == "traffic_signals"
+
+    neighbours: dict = {}
+    for u, v in zip(edges.index.get_level_values("u"), edges.index.get_level_values("v")):
+        neighbours.setdefault(u, set()).add(v)
+        neighbours.setdefault(v, set()).add(u)
+    degree = pd.Series({n: len(neigh) for n, neigh in neighbours.items()})
+
+    pts = nodes[nodes.geometry.notna()].copy()
+    pts["is_signal"] = pts["highway"].apply(_is_signal)
+    pts["degree"] = degree.reindex(pts.index).fillna(0)
+    pts = pts[pts["is_signal"] | (pts["degree"] >= 3)]
+    pts = pts.to_crs(4326)
+
+    minx, miny, maxx, maxy = pts.total_bounds
+    if overwrite or not os.path.isfile(filename):
+        fig = plt.figure(figsize=(10, 10), dpi=dpi)
+        ax = fig.add_axes([0, 0, 1, 1])
+        nonsig = pts[~pts["is_signal"]]
+        sig = pts[pts["is_signal"]]
+        ax.scatter(nonsig.geometry.x, nonsig.geometry.y, s=nonsignal_size,
+                   c=nonsignal_color, edgecolors="none", zorder=1)
+        ax.scatter(sig.geometry.x, sig.geometry.y, s=signal_size,
+                   c=signal_color, edgecolors="none", zorder=2)
+        ax.set_xlim(minx, maxx)
+        ax.set_ylim(miny, maxy)
+        ax.set_aspect("equal")
+        ax.set_axis_off()
+        fig.savefig(filename, dpi=dpi, bbox_inches="tight", pad_inches=0, transparent=True)
+        plt.close(fig)
+
+    colors = pd.DataFrame({
+        "intersection_type": ["non_signalized", "signalized"],
+        "color": [nonsignal_color, signal_color],
+    })
+    return filename, (minx, miny, maxx, maxy), colors
+
+
 def create_background_layers(data, path, overwrite=False, dpi=1500):
     os.makedirs(path, exist_ok=True)
     image_dict = {}
@@ -553,18 +611,54 @@ def _reachable_pairs_for_loops(loops_json: List[dict]) -> set:
     return pairs
 
 
-def _loop_to_json(loop: DeliveryLoop, loop_id: str) -> dict:
+def _loop_car_co2_total(loop: DeliveryLoop, pair_car_co2: Dict[tuple, float]) -> Optional[float]:
+    legs = loop.car_legs or []
+    total = 0.0
+    found_any = False
+    for j in range(len(legs) - 1):
+        a, b = legs[j]["poi_id"], legs[j + 1]["poi_id"]
+        co2 = pair_car_co2.get((a, b))
+        if co2 is None or (isinstance(co2, float) and np.isnan(co2)):
+            co2 = pair_car_co2.get((b, a))
+        if co2 is not None and not (isinstance(co2, float) and np.isnan(co2)):
+            total += co2
+            found_any = True
+    return round(total, 3) if found_any else None
+
+
+def _loop_to_json(loop: DeliveryLoop, loop_id: str, pair_car_co2: Optional[Dict[tuple, float]] = None) -> dict:
     return {
         "id": loop_id,
         "mode": loop.mode,
         "home": int(loop.home_poi_id),
         "ebike_legs": loop.ebike_legs or [],
         "car_legs": loop.car_legs or [],
+        # Authoritative totals from the backend routing engine (same
+        # source as the report tables/geojson export). The live pairwise
+        # PAIRS preview embedded in this page only covers precomputed
+        # product-relevant POI pairs, so re-deriving a loop's total by
+        # summing PAIRS segments in JS can silently drop stops that have
+        # no direct preview entry (e.g. a supplier-to-supplier hop that
+        # was never queried on its own) and understate the true total.
+        # Falling back to these precomputed totals keeps the on-page
+        # summary consistent with the report.
+        "ebike_time_total": round(loop.ebike_time, 2),
+        "ebike_dist_total": round(loop.ebike_distance, 3),
+        "car_time_total": round(loop.car_time, 2),
+        "car_dist_total": round(loop.car_distance, 3),
+        "car_co2_total": (
+            _loop_car_co2_total(loop, pair_car_co2) if pair_car_co2 is not None else None
+        ),
     }
 
 
-def _export_layer(loops: List[DeliveryLoop], layer_key: str) -> List[dict]:
-    return [_loop_to_json(loop, f"{layer_key}_{i}") for i, loop in enumerate(loops) if loop.is_valid]
+def _export_layer(
+    loops: List[DeliveryLoop], layer_key: str, pair_car_co2: Optional[Dict[tuple, float]] = None
+) -> List[dict]:
+    return [
+        _loop_to_json(loop, f"{layer_key}_{i}", pair_car_co2)
+        for i, loop in enumerate(loops) if loop.is_valid
+    ]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -645,6 +739,16 @@ def route_map(
 
     good_name_to_id = _good_name_to_id(goods)
 
+    # Pair-level CO2 lookup, used only for the *custom* layers below so their
+    # on-page route summary can show the same authoritative total as the
+    # report tables. Producer/consumer loops stay on the live PAIRS-based
+    # calculation, since they have no such fixed report table to match.
+    pair_car_co2: Dict[tuple, float] = {}
+    if all_pairs is not None and not all_pairs.empty:
+        for _, row in all_pairs.iterrows():
+            a, b = int(row["origin_poi_id"]), int(row["destination_poi_id"])
+            pair_car_co2[(a, b)] = row.get("car_co2")
+
     # ── layers / loops ──────────────────────────────────────────────────────
     layers: Dict[str, List[dict]] = {
         "producer": _export_layer(producer_loops, "producer"),
@@ -655,7 +759,7 @@ def route_map(
 
     for i, (layer_name, loops_list) in enumerate(custom_loops.items()):
         key = f"custom_{i}"
-        layers[key] = _export_layer(loops_list, key)
+        layers[key] = _export_layer(loops_list, key, pair_car_co2)
         layer_names[key] = layer_name
         layer_order.append(key)
 

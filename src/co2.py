@@ -185,9 +185,9 @@ def hbefa_row(
         "Access-Rural": 1.40,
         "Motorway-City": 0.95,
         "Primary-City": 1.10,
-        "Distributor-Urban": 1.38,
-        "Local-Urban": 1.56,
-        "Access-Urban": 1.68
+        "Distributor-Urban": 1.25,
+        "Local-Urban": 1.30,
+        "Access-Urban": 1.32
     }
     road_penalty = ROAD_TYPE_PENALTIES.get(hbefa_road_type, 1.20)
 
@@ -208,7 +208,7 @@ def hbefa_row(
     if isinstance(los, int):
         los_map = {1: 1.0, 2: 1.05, 3: 1.1, 4: 2.0, 5: 3.0}
     else:
-        los_map = {"A": 1.0, "B": 1.05, "C": 1.1, "D": 1.15, "E": 1.5, "F": 2.0}
+        los_map = {"A": 1.0, "B": 1.05, "C": 1.1, "D": 1.15, "E": 1.35, "F": 2.2}
 
     los_multiplier = los_map.get(los.upper() if isinstance(los, str) else los, 1.05)
 

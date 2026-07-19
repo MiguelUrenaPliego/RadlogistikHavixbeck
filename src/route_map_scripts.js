@@ -1545,9 +1545,42 @@
       ebike: { time: 0, dist: 0, friendSum: 0, friendDistSum: 0, valid: false },
       car: { time: 0, dist: 0, co2: 0, valid: false },
     };
+    // Loops from a custom layer (Landwirtschaft, Wochenmarkt, Stift Tilbeck,
+    // Restaurants, Lebensmittelhandel, ...) carry precomputed backend totals
+    // — the exact same numbers used in the report tables. For those, always
+    // use the precomputed totals rather than re-deriving anything live from
+    // the PAIRS preview, so the on-page summary can never drift from the
+    // report. Only producer/consumer auto-generated loops (which have no
+    // fixed report table to match) fall back to the live per-segment calc.
+    var hasBackendTotals = loop.ebike_time_total != null;
+
     ["ebike", "car"].forEach(function (vehicle) {
       var resolved = resolveLoopLegs(loop, vehicle);
       if (!resolved.valid) return;
+
+      if (hasBackendTotals) {
+        var totalKeyTime = vehicle === "car" ? "car_time_total" : "ebike_time_total";
+        var totalKeyDist = vehicle === "car" ? "car_dist_total" : "ebike_dist_total";
+        out[vehicle].time = loop[totalKeyTime] || 0;
+        out[vehicle].dist = loop[totalKeyDist] || 0;
+        if (vehicle === "car") {
+          out.car.co2 = loop.car_co2_total != null ? loop.car_co2_total : 0;
+        }
+        // Bike-quality stars still need a distance-weighted friendliness
+        // average, which isn't a single precomputed scalar -- keep deriving
+        // that live from whatever segments the PAIRS preview does cover.
+        if (vehicle === "ebike") {
+          resolved.segments.forEach(function (seg) {
+            var m = pairMetrics(seg.from, seg.to, vehicle);
+            if (!m) return;
+            out.ebike.friendSum += (m.f || 0) * (m.d || 0);
+            out.ebike.friendDistSum += (m.d || 0);
+          });
+        }
+        out[vehicle].valid = true;
+        return;
+      }
+
       var ok = true;
       resolved.segments.forEach(function (seg) {
         var m = pairMetrics(seg.from, seg.to, vehicle);

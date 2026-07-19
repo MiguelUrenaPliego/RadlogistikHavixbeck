@@ -28,7 +28,10 @@ from shapely.geometry import LineString, MultiLineString
 from .data_utils import safe_parse_list, is_list_column, fix_coord, json_serializable, is_missing
 from .connections import build_all_pairs_connections, route_connections, enrich_pois
 from .delivery_loops import build_producer_loops, build_consumer_loops, build_custom_loops, DeliveryLoop
-from .route_map import image_layer_map, route_map, poi_map, green_map, red_map, create_background_layers
+from .route_map import (
+    image_layer_map, route_map, poi_map, green_map, red_map,
+    create_background_layers, render_intersections,
+)
 import src.routing as routing
 import src.osm as osm
 import src.co2 as co2
@@ -65,6 +68,7 @@ def run(config: dict) -> None:
     MAX_ADDED_DISTANCE = loop_cfg["max_added_distance_m"]
 
     car_node_penalty        = car_cfg["node_penalty"]
+    car_traffic_light_penalty = car_cfg.get("traffic_light_penalty", car_node_penalty)
     car_acceleration        = car_cfg["acceleration"]
     car_min_cruising_time   = car_cfg["min_cruising_time"]
     car_min_cruising_speed  = car_cfg["min_cruising_speed"]
@@ -73,6 +77,7 @@ def run(config: dict) -> None:
     car_maxspeeds           = car_cfg["maxspeeds"]
 
     ebike_node_penalty         = ebike_cfg["node_penalty"]
+    ebike_traffic_light_penalty = ebike_cfg.get("traffic_light_penalty", ebike_node_penalty)
     ebike_acceleration         = ebike_cfg["acceleration"]
     ebike_min_cruising_time    = ebike_cfg["min_cruising_time"]
     ebike_min_cruising_speed   = ebike_cfg["min_cruising_speed"]
@@ -134,6 +139,17 @@ def run(config: dict) -> None:
         aoi.to_file(aoi_path)
 
     nodes, edges = ox.graph_to_gdfs(G)
+
+    # An edge is treated as entering a signalised intersection if the node it
+    # arrives at (its "v" endpoint) carries OSM's highway=traffic_signals tag.
+    def _is_traffic_signals(h):
+        if isinstance(h, (list, tuple, set)):
+            return "traffic_signals" in h
+        return h == "traffic_signals"
+    node_has_signal = nodes["highway"].apply(_is_traffic_signals)
+    edges["has_traffic_light"] = node_has_signal.reindex(
+        edges.index.get_level_values("v")
+    ).fillna(False).to_numpy()
 
     # ── Load goods ────────────────────────────────────────────────────────────
     goods = pd.read_csv(goods_path, sep=",")
@@ -272,6 +288,8 @@ def run(config: dict) -> None:
         min_cruising_time=car_min_cruising_time,
         max_stop_and_go_speed=car_max_stop_and_go_speed,
         node_penalty=car_node_penalty,
+        traffic_light_penalty=car_traffic_light_penalty,
+        has_traffic_light_col="has_traffic_light",
         maxspeed_col="car_maxspeed",
         return_speed=True,
     )
@@ -326,6 +344,8 @@ def run(config: dict) -> None:
         min_cruising_time=ebike_min_cruising_time,
         max_stop_and_go_speed=ebike_max_stop_and_go_speed,
         node_penalty=ebike_node_penalty,
+        traffic_light_penalty=ebike_traffic_light_penalty,
+        has_traffic_light_col="has_traffic_light",
         maxspeed_col="ebike_maxspeed",
         return_speed=True,
     )
@@ -413,6 +433,18 @@ def run(config: dict) -> None:
     raster_path = os.path.join(map_folder, raster_subfolder)
     image_dict = create_background_layers(raster_data, raster_path, overwrite=False, dpi=RASTER_LAYER_DPI)
 
+    print("  → background layer: intersections …")
+    os.makedirs(raster_path, exist_ok=True)
+    intersections_filename = os.path.abspath(os.path.join(raster_path, "intersections.png"))
+    intersections_filename, intersections_bounds, intersections_colors = render_intersections(
+        nodes, edges, intersections_filename, dpi=RASTER_LAYER_DPI,
+    )
+    image_dict["intersections"] = {
+        "path": intersections_filename,
+        "bounds": intersections_bounds,
+        "colors": intersections_colors,
+    }
+
     print("Rendering POI map …")
     m_poi = poi_map(pois=pois, goods=goods, image_dict=image_dict, default_lang=DEFAULT_LANGUAGE)
     poi_map_path = os.path.join(map_folder, "poi_map.html")
@@ -442,9 +474,11 @@ def run(config: dict) -> None:
             crs = all_pairs.crs if all_pairs is not None and not all_pairs.empty else "EPSG:4326"
             return gpd.GeoDataFrame(columns=["geometry"], crs=crs)
         pair_car_geom: Dict = {}
+        pair_car_co2: Dict = {}
         for _, row in all_pairs.iterrows():
             a, b = int(row["origin_poi_id"]), int(row["destination_poi_id"])
             pair_car_geom[(a, b)] = row.get("car_geometry")
+            pair_car_co2[(a, b)] = row.get("car_co2")
         good_id_to_name = {int(r["good_id"]): str(r["Product"]) for _, r in goods.iterrows()}
         poi_name = {int(idx): str(row.get("Company", f"POI {idx}")) for idx, row in pois.iterrows()}
         records = []
@@ -453,11 +487,17 @@ def run(config: dict) -> None:
                 continue
             legs = loop.car_legs or []
             parts = []
+            co2_total_g = 0.0
             for j in range(len(legs) - 1):
                 a, b = legs[j]["poi_id"], legs[j + 1]["poi_id"]
                 geom = pair_car_geom.get((a, b)) or pair_car_geom.get((b, a))
                 if geom is not None and not (hasattr(geom, "is_empty") and geom.is_empty):
                     parts.append(geom)
+                co2_seg = pair_car_co2.get((a, b))
+                if co2_seg is None or (isinstance(co2_seg, float) and np.isnan(co2_seg)):
+                    co2_seg = pair_car_co2.get((b, a))
+                if co2_seg is not None and not (isinstance(co2_seg, float) and np.isnan(co2_seg)):
+                    co2_total_g += co2_seg
             geom = MultiLineString([
                 list(p.coords) if isinstance(p, LineString) else list(p.geoms[0].coords)
                 for p in parts
@@ -471,6 +511,7 @@ def run(config: dict) -> None:
                 "ebike_time_min": round(loop.ebike_time, 2),
                 "car_dist_km": round(loop.car_distance, 3),
                 "ebike_dist_km": round(loop.ebike_distance, 3),
+                "car_co2_kg": round(co2_total_g, 3),
                 "stops": len(loop.stop_poi_ids),
                 "geometry": geom,
             })
