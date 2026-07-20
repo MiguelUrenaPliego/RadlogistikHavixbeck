@@ -26,11 +26,20 @@
   var TRANSLATIONS = D.TRANSLATIONS || {};
   var CUSTOM_LAYER_KEYS = new Set(D.CUSTOM_LAYER_KEYS || []);
 
+  // ── deep-linking: ?layer=<key> / ?poiLayer=<key> preselect the initial
+  // loop/POI layer, so a report or external page can link straight to the
+  // relevant view instead of always opening on LAYER_ORDER[0]. Falls back
+  // to the normal defaults for unknown/missing values, so a plain URL with
+  // no query string behaves exactly as before.
+  var _urlParams = new URLSearchParams(window.location.search);
+  var _urlLayer = _urlParams.get("layer");
+  var _urlPoiLayer = _urlParams.get("poiLayer");
+
   // ── mutable state ────────────────────────────────────────────────────
   var state = {
     lang: D.DEFAULT_LANG || "de",
-    layerKey: LAYER_ORDER[0] || "producer",
-    poiLayerKey: POI_LAYER_ORDER[0] || null,
+    layerKey: (_urlLayer && LAYER_ORDER.indexOf(_urlLayer) !== -1) ? _urlLayer : (LAYER_ORDER[0] || "producer"),
+    poiLayerKey: (_urlPoiLayer && POI_LAYER_ORDER.indexOf(_urlPoiLayer) !== -1) ? _urlPoiLayer : (POI_LAYER_ORDER[0] || null),
     vehicle: "ebike",          // "ebike" | "car" — last one toggled wins when both checked
     showEbike: true,
     showCar: false,

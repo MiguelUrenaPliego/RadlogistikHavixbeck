@@ -340,13 +340,31 @@ def image_layer_map(image_dict, m=None, add_layer_control=True, opacity=1.0):
             });
         }
 
-        document.getElementById("rasterSelect").addEventListener("change", function(e) {
-            var selected = e.target.value;
+        function selectRaster(selected) {
             applySelection(selected);
             document.querySelectorAll(".maplegend").forEach(function(x) { x.style.display = "none"; });
             if (selected !== "None") {
                 var legend = document.getElementById("legend_" + selected);
                 if (legend) legend.style.display = "block";
+            }
+        }
+
+        document.getElementById("rasterSelect").addEventListener("change", function(e) {
+            selectRaster(e.target.value);
+        });
+
+        // Deep-linking: ?raster=<name> preselects a raster layer on load, so a
+        // report or external page can link straight to the relevant overlay
+        // instead of always opening on the empty "None" default. Runs on
+        // window "load" (registered after the per-image overlay listeners
+        // above, so it fires after they do) to make sure the imageOverlay
+        // layers and folium's layer_control already exist.
+        window.addEventListener("load", function() {
+            var urlRaster = new URLSearchParams(window.location.search).get("raster");
+            if (urlRaster && imageLayerNames.has(urlRaster)) {
+                var dd = document.getElementById("rasterSelect");
+                if (dd) dd.value = urlRaster;
+                selectRaster(urlRaster);
             }
         });
     })();
