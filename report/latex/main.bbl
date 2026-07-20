@@ -1,0 +1,1414 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{Applegate2006}{book}{}
+      \name{author}{4}{}{%
+        {{hash=afbad19ea78fac67b8114fd5ed505b95}{%
+           family={Applegate},
+           familyi={A\bibinitperiod},
+           given={David\bibnamedelima L.},
+           giveni={D\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=e0f9cfc8dfcfd696b915035de724fd46}{%
+           family={Bixby},
+           familyi={B\bibinitperiod},
+           given={Robert\bibnamedelima E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=76e781465fa327a48c5a4a9d1b551fe5}{%
+           family={Chvátal},
+           familyi={C\bibinitperiod},
+           given={Vašek},
+           giveni={V\bibinitperiod}}}%
+        {{hash=7d8d2f149f40a10880727c236201ef9a}{%
+           family={Cook},
+           familyi={C\bibinitperiod},
+           given={William\bibnamedelima J.},
+           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Princeton University Press}%
+      }
+      \strng{namehash}{e4126295e4d4d6b25b8493d29001a255}
+      \strng{fullhash}{4a7e98f053b16bad5d6cdd5c79683566}
+      \strng{bibnamehash}{4a7e98f053b16bad5d6cdd5c79683566}
+      \strng{authorbibnamehash}{4a7e98f053b16bad5d6cdd5c79683566}
+      \strng{authornamehash}{e4126295e4d4d6b25b8493d29001a255}
+      \strng{authorfullhash}{4a7e98f053b16bad5d6cdd5c79683566}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Traveling Salesman Problem: A Computational Study}
+      \field{year}{2006}
+      \verb{urlraw}
+      \verb https://press.princeton.edu/books/hardcover/9780691129938/the-traveling-salesman-problem
+      \endverb
+      \verb{url}
+      \verb https://press.princeton.edu/books/hardcover/9780691129938/the-traveling-salesman-problem
+      \endverb
+    \endentry
+    \entry{Brenschede}{software}{}
+      \name{author}{1}{}{%
+        {{hash=40ff6acdabef65fbbbefe3026b141591}{%
+           family={Brenschede},
+           familyi={B\bibinitperiod},
+           given={Arndt},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{40ff6acdabef65fbbbefe3026b141591}
+      \strng{fullhash}{40ff6acdabef65fbbbefe3026b141591}
+      \strng{bibnamehash}{40ff6acdabef65fbbbefe3026b141591}
+      \strng{authorbibnamehash}{40ff6acdabef65fbbbefe3026b141591}
+      \strng{authornamehash}{40ff6acdabef65fbbbefe3026b141591}
+      \strng{authorfullhash}{40ff6acdabef65fbbbefe3026b141591}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{GitHub}
+      \field{title}{{BRouter}: Configurable {OSM} offline router with elevation awareness}
+      \field{urlday}{16}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{o.\,D.}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/abrensch/brouter
+      \endverb
+      \verb{url}
+      \verb https://github.com/abrensch/brouter
+      \endverb
+    \endentry
+    \entry{Broach2012}{article}{}
+      \name{author}{3}{}{%
+        {{hash=bf2af270436ac950ab7a7aad495333ca}{%
+           family={Broach},
+           familyi={B\bibinitperiod},
+           given={Joseph},
+           giveni={J\bibinitperiod}}}%
+        {{hash=845db3900eacd9e19aa3abff4b38a7e8}{%
+           family={Dill},
+           familyi={D\bibinitperiod},
+           given={Jennifer},
+           giveni={J\bibinitperiod}}}%
+        {{hash=6f285ab1aa7673e750f8549459793b7d}{%
+           family={Gliebe},
+           familyi={G\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{91ab1eea0949a5d7d6e8e93896bb9dba}
+      \strng{fullhash}{254b7f04e1ce5991941413cce0c83a94}
+      \strng{bibnamehash}{254b7f04e1ce5991941413cce0c83a94}
+      \strng{authorbibnamehash}{254b7f04e1ce5991941413cce0c83a94}
+      \strng{authornamehash}{91ab1eea0949a5d7d6e8e93896bb9dba}
+      \strng{authorfullhash}{254b7f04e1ce5991941413cce0c83a94}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Research Part A: Policy and Practice}
+      \field{number}{10}
+      \field{title}{Where do cyclists ride? A route choice model developed with revealed preference {GPS} data}
+      \field{volume}{46}
+      \field{year}{2012}
+      \field{pages}{1730\bibrangedash 1740}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1016/j.tra.2012.07.005
+      \endverb
+    \endentry
+    \entry{BMEL2023}{report}{}
+      \name{author}{1}{}{%
+        {{hash=cfcc226ab39bcf8abfd4f34b21ce2b7c}{%
+           family={{Bundesministerium für Ernährung und Landwirtschaft}},
+           familyi={B\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{hash=23815320e9c6dec1e2b9ca4c8638380b}{%
+           family={{BMEL}},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{23815320e9c6dec1e2b9ca4c8638380b}
+      \strng{fullhash}{cfcc226ab39bcf8abfd4f34b21ce2b7c}
+      \strng{bibnamehash}{23815320e9c6dec1e2b9ca4c8638380b}
+      \strng{authorbibnamehash}{cfcc226ab39bcf8abfd4f34b21ce2b7c}
+      \strng{authornamehash}{cfcc226ab39bcf8abfd4f34b21ce2b7c}
+      \strng{authorfullhash}{cfcc226ab39bcf8abfd4f34b21ce2b7c}
+      \strng{shortauthorbibnamehash}{23815320e9c6dec1e2b9ca4c8638380b}
+      \strng{shortauthornamehash}{23815320e9c6dec1e2b9ca4c8638380b}
+      \strng{shortauthorfullhash}{23815320e9c6dec1e2b9ca4c8638380b}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{title}{Ländliche Mobilität verstehen -- Grundlagen, Trends und Herausforderungen}
+      \field{urlday}{20}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.bmleh.de/SharedDocs/Downloads/DE/Broschueren/laendliche-mobilitaet-verstehen.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.bmleh.de/SharedDocs/Downloads/DE/Broschueren/laendliche-mobilitaet-verstehen.pdf
+      \endverb
+    \endentry
+    \entry{CarlaCargo}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b7ce7dbcae056cef9eb84badc1cb1c52}{%
+           family={{Carla Cargo Engineering GmbH}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{b7ce7dbcae056cef9eb84badc1cb1c52}
+      \strng{fullhash}{b7ce7dbcae056cef9eb84badc1cb1c52}
+      \strng{bibnamehash}{b7ce7dbcae056cef9eb84badc1cb1c52}
+      \strng{authorbibnamehash}{b7ce7dbcae056cef9eb84badc1cb1c52}
+      \strng{authornamehash}{b7ce7dbcae056cef9eb84badc1cb1c52}
+      \strng{authorfullhash}{b7ce7dbcae056cef9eb84badc1cb1c52}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{CARLA} -- Dein professioneller und sicherer Fahrradanhänger}
+      \field{urlday}{2}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{o.\,D.}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.carlacargo.de/products/carla
+      \endverb
+      \verb{url}
+      \verb https://www.carlacargo.de/products/carla
+      \endverb
+    \endentry
+    \entry{Current1989}{article}{}
+      \name{author}{2}{}{%
+        {{hash=5b83ff9041e8b8c79c2d1f922ec9420a}{%
+           family={Current},
+           familyi={C\bibinitperiod},
+           given={John\bibnamedelima R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=fa74085512ffa91263f1640b25f83cf9}{%
+           family={Schilling},
+           familyi={S\bibinitperiod},
+           given={David\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{4fc7cd986c35a6b9fdea62d737b28562}
+      \strng{fullhash}{4fc7cd986c35a6b9fdea62d737b28562}
+      \strng{bibnamehash}{4fc7cd986c35a6b9fdea62d737b28562}
+      \strng{authorbibnamehash}{4fc7cd986c35a6b9fdea62d737b28562}
+      \strng{authornamehash}{4fc7cd986c35a6b9fdea62d737b28562}
+      \strng{authorfullhash}{4fc7cd986c35a6b9fdea62d737b28562}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Science}
+      \field{number}{3}
+      \field{title}{The covering salesman problem}
+      \field{volume}{23}
+      \field{year}{1989}
+      \field{pages}{208\bibrangedash 213}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1287/trsc.23.3.208
+      \endverb
+    \endentry
+    \entry{CycleStreets}{online}{}
+      \name{author}{1}{}{%
+        {{hash=163607abe12f690188e49b7dac55266f}{%
+           family={{CycleStreets Ltd.}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{163607abe12f690188e49b7dac55266f}
+      \strng{fullhash}{163607abe12f690188e49b7dac55266f}
+      \strng{bibnamehash}{163607abe12f690188e49b7dac55266f}
+      \strng{authorbibnamehash}{163607abe12f690188e49b7dac55266f}
+      \strng{authornamehash}{163607abe12f690188e49b7dac55266f}
+      \strng{authorfullhash}{163607abe12f690188e49b7dac55266f}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{How the journey planner works}
+      \field{urlday}{2}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{o.\,D.}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.cyclestreets.net/help/journey/howitworks/
+      \endverb
+      \verb{url}
+      \verb https://www.cyclestreets.net/help/journey/howitworks/
+      \endverb
+    \endentry
+    \entry{Dozza2016}{article}{}
+      \name{author}{3}{}{%
+        {{hash=f17b3c7d074707e16102f4295e842f4c}{%
+           family={Dozza},
+           familyi={D\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+        {{hash=980fcb08d50e0348596af6892610842f}{%
+           family={Piccinini},
+           familyi={P\bibinitperiod},
+           given={Giulio\bibnamedelimb F.\bibnamedelimi B.},
+           giveni={G\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=9a24201520e3babf0151eb4c2dc9111e}{%
+           family={Werneke},
+           familyi={W\bibinitperiod},
+           given={Johan},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{d403073f491665fe9027ab51339ac612}
+      \strng{fullhash}{7eaa8c1c357277f20d496ae60cd67ae0}
+      \strng{bibnamehash}{7eaa8c1c357277f20d496ae60cd67ae0}
+      \strng{authorbibnamehash}{7eaa8c1c357277f20d496ae60cd67ae0}
+      \strng{authornamehash}{d403073f491665fe9027ab51339ac612}
+      \strng{authorfullhash}{7eaa8c1c357277f20d496ae60cd67ae0}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Research Part F: Traffic Psychology and Behaviour}
+      \field{title}{Using naturalistic data to assess e-cyclist behavior}
+      \field{volume}{41}
+      \field{year}{2016}
+      \field{pages}{217\bibrangedash 226}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1016/j.trf.2015.12.014
+      \endverb
+    \endentry
+    \entry{RADLAER2025}{online}{}
+      \name{author}{3}{}{%
+        {{hash=dc6be55f74fcd8572d2c37ab351a5eea}{%
+           family={{Fraunhofer INT}},
+           familyi={F\bibinitperiod}}}%
+        {{hash=82f11402bf9a69ccd010a740332b543a}{%
+           family={{Frankfurt University of Applied Sciences}},
+           familyi={F\bibinitperiod}}}%
+        {{hash=eeff2ff9f913a6d116f99f1b72c5fd21}{%
+           family={{Hochschule Fulda}},
+           familyi={H\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{hash=5c1badafd21a74a3e5e59b784a72f1b0}{%
+           family={{RADLÄR}},
+           familyi={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{5c1badafd21a74a3e5e59b784a72f1b0}
+      \strng{fullhash}{f198d6070fc01cad4ac2e2d1dbecd8c4}
+      \strng{bibnamehash}{5c1badafd21a74a3e5e59b784a72f1b0}
+      \strng{authorbibnamehash}{f198d6070fc01cad4ac2e2d1dbecd8c4}
+      \strng{authornamehash}{18f3d011a0fa5fa65d37be85a26ece87}
+      \strng{authorfullhash}{f198d6070fc01cad4ac2e2d1dbecd8c4}
+      \strng{shortauthorbibnamehash}{5c1badafd21a74a3e5e59b784a72f1b0}
+      \strng{shortauthornamehash}{5c1badafd21a74a3e5e59b784a72f1b0}
+      \strng{shortauthorfullhash}{5c1badafd21a74a3e5e59b784a72f1b0}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{title}{{RADLÄR} -- Regionalstudie Havixbeck}
+      \field{urlday}{20}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://campuas.frankfurt-university.de/pluginfile.php/770467/mod_resource/content/0/RADL%C3%84R_Regionalstudie_Havixbeck.pdf
+      \endverb
+      \verb{url}
+      \verb https://campuas.frankfurt-university.de/pluginfile.php/770467/mod_resource/content/0/RADL%C3%84R_Regionalstudie_Havixbeck.pdf
+      \endverb
+    \endentry
+    \entry{Fu2023}{article}{}
+      \name{author}{4}{}{%
+        {{hash=b0d944fba0e64d98ce8fa4837b82dd07}{%
+           family={Fu},
+           familyi={F\bibinitperiod},
+           given={Chuanyun},
+           giveni={C\bibinitperiod}}}%
+        {{hash=1b6b60843377801f1185fe1d2f2ee8a7}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Zhibin},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=20e15f23fd30eeef71d14bf596b81983}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yajie},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=47cb44641bfc39e4ba0d9954fb804a87}{%
+           family={Sze},
+           familyi={S\bibinitperiod},
+           given={N.\bibnamedelimi N.},
+           giveni={N\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{20e1a5f5dd8ad4d1b16c3afa2b9146e1}
+      \strng{fullhash}{22cf833ef95e28f33a165712f5c7f70d}
+      \strng{bibnamehash}{22cf833ef95e28f33a165712f5c7f70d}
+      \strng{authorbibnamehash}{22cf833ef95e28f33a165712f5c7f70d}
+      \strng{authornamehash}{20e1a5f5dd8ad4d1b16c3afa2b9146e1}
+      \strng{authorfullhash}{22cf833ef95e28f33a165712f5c7f70d}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Accident Analysis \& Prevention}
+      \field{title}{How do cyclists interact with motorized vehicles at unsignalized intersections? Modeling cyclists' yielding behavior using naturalistic data}
+      \field{volume}{190}
+      \field{year}{2023}
+      \field{pages}{107154}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.aap.2023.107154
+      \endverb
+    \endentry
+    \entry{Furth2016}{article}{}
+      \name{author}{3}{}{%
+        {{hash=e3e164b724148bc0392f4a68bcf53996}{%
+           family={Furth},
+           familyi={F\bibinitperiod},
+           given={Peter\bibnamedelima G.},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=09defe0e6584d96f9228c4aaabf0fe5f}{%
+           family={Mekuria},
+           familyi={M\bibinitperiod},
+           given={Maaza\bibnamedelima C.},
+           giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=21df2944a9659fa7aa4001e785a34319}{%
+           family={Nixon},
+           familyi={N\bibinitperiod},
+           given={Hilary},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{81f6f8dda3602f48c9e93955b17d240f}
+      \strng{fullhash}{bead70d2e03d1c8513dc4cd2e1c2c1dc}
+      \strng{bibnamehash}{bead70d2e03d1c8513dc4cd2e1c2c1dc}
+      \strng{authorbibnamehash}{bead70d2e03d1c8513dc4cd2e1c2c1dc}
+      \strng{authornamehash}{81f6f8dda3602f48c9e93955b17d240f}
+      \strng{authorfullhash}{bead70d2e03d1c8513dc4cd2e1c2c1dc}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Research Record}
+      \field{number}{1}
+      \field{title}{Network connectivity for low-stress bicycling}
+      \field{volume}{2587}
+      \field{year}{2016}
+      \field{pages}{41\bibrangedash 49}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.3141/2587-06
+      \endverb
+    \endentry
+    \entry{GraphHopper}{online}{}
+      \name{author}{1}{}{%
+        {{hash=348676231d7fb36bfd6bc3bb419e22c8}{%
+           family={{GraphHopper GmbH}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{348676231d7fb36bfd6bc3bb419e22c8}
+      \strng{fullhash}{348676231d7fb36bfd6bc3bb419e22c8}
+      \strng{bibnamehash}{348676231d7fb36bfd6bc3bb419e22c8}
+      \strng{authorbibnamehash}{348676231d7fb36bfd6bc3bb419e22c8}
+      \strng{authornamehash}{348676231d7fb36bfd6bc3bb419e22c8}
+      \strng{authorfullhash}{348676231d7fb36bfd6bc3bb419e22c8}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{GraphHopper} Directions {API}}
+      \field{urlday}{16}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{o.\,D.}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.graphhopper.com/
+      \endverb
+      \verb{url}
+      \verb https://www.graphhopper.com/
+      \endverb
+    \endentry
+    \entry{Guth2020}{article}{}
+      \name{author}{3}{}{%
+        {{hash=01a67bc8aaf5eea4cece39a06795a946}{%
+           family={Guth},
+           familyi={G\bibinitperiod},
+           given={Jasmin},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a829a320cbae7a6bd9ac798ec9375d90}{%
+           family={Wursthorn},
+           familyi={W\bibinitperiod},
+           given={Sven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0bbbbbe942476f1b7887370c19d6606a}{%
+           family={Keller},
+           familyi={K\bibinitperiod},
+           given={Sina},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{007753a95584424f26e0c2c51b670c3a}
+      \strng{fullhash}{34b495702433fc8e240870e2e37744be}
+      \strng{bibnamehash}{34b495702433fc8e240870e2e37744be}
+      \strng{authorbibnamehash}{34b495702433fc8e240870e2e37744be}
+      \strng{authornamehash}{007753a95584424f26e0c2c51b670c3a}
+      \strng{authorfullhash}{34b495702433fc8e240870e2e37744be}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ISPRS International Journal of Geo-Information}
+      \field{number}{1}
+      \field{title}{Multi-parameter estimation of average speed in road networks using fuzzy control}
+      \field{volume}{9}
+      \field{year}{2020}
+      \field{pages}{55}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/ijgi9010055
+      \endverb
+    \endentry
+    \entry{Kirby1969}{article}{}
+      \name{author}{2}{}{%
+        {{hash=b2a1cdf2b2c63243ecf16ca98bb58081}{%
+           family={Kirby},
+           familyi={K\bibinitperiod},
+           given={R.\bibnamedelimi F.},
+           giveni={R\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=13bbb3fcfdeb976344c706cb9ebefb1f}{%
+           family={Potts},
+           familyi={P\bibinitperiod},
+           given={R.\bibnamedelimi B.},
+           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \strng{namehash}{0e6de80604ab99cf0d537d222f46101f}
+      \strng{fullhash}{0e6de80604ab99cf0d537d222f46101f}
+      \strng{bibnamehash}{0e6de80604ab99cf0d537d222f46101f}
+      \strng{authorbibnamehash}{0e6de80604ab99cf0d537d222f46101f}
+      \strng{authornamehash}{0e6de80604ab99cf0d537d222f46101f}
+      \strng{authorfullhash}{0e6de80604ab99cf0d537d222f46101f}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Research}
+      \field{number}{3}
+      \field{title}{The minimum route problem for networks with turn penalties and prohibitions}
+      \field{volume}{3}
+      \field{year}{1969}
+      \field{pages}{397\bibrangedash 408}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/S0041-1647(69)80022-5
+      \endverb
+    \endentry
+    \entry{Kleinanzeigen2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=44adb8e65a5f277e21a16cec0cef1201}{%
+           family={{Kleinanzeigen}},
+           familyi={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{44adb8e65a5f277e21a16cec0cef1201}
+      \strng{fullhash}{44adb8e65a5f277e21a16cec0cef1201}
+      \strng{bibnamehash}{44adb8e65a5f277e21a16cec0cef1201}
+      \strng{authorbibnamehash}{44adb8e65a5f277e21a16cec0cef1201}
+      \strng{authornamehash}{44adb8e65a5f277e21a16cec0cef1201}
+      \strng{authorfullhash}{44adb8e65a5f277e21a16cec0cef1201}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Verkaufsanhänger/Imbisswagen, 9.700~€}
+      \field{urlday}{10}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.kleinanzeigen.de/s-anzeige/verkaufsanhaenger-verkaufswagen-imbisswagen-food-truck-neu/3366033494-276-2653
+      \endverb
+      \verb{url}
+      \verb https://www.kleinanzeigen.de/s-anzeige/verkaufsanhaenger-verkaufswagen-imbisswagen-food-truck-neu/3366033494-276-2653
+      \endverb
+    \endentry
+    \entry{KSG2019}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=a3e0792ca368b3e51c7dcfb60ecd1572}{%
+           family={{KSG}},
+           familyi={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{a3e0792ca368b3e51c7dcfb60ecd1572}
+      \strng{fullhash}{a3e0792ca368b3e51c7dcfb60ecd1572}
+      \strng{bibnamehash}{a3e0792ca368b3e51c7dcfb60ecd1572}
+      \strng{authorbibnamehash}{a3e0792ca368b3e51c7dcfb60ecd1572}
+      \strng{authornamehash}{a3e0792ca368b3e51c7dcfb60ecd1572}
+      \strng{authorfullhash}{a3e0792ca368b3e51c7dcfb60ecd1572}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Bundesministerium der Justiz (Hrsg.).}
+      \field{title}{Bundes-Klimaschutzgesetz, § 3 Nationale Klimaschutzziele}
+      \field{urlday}{20}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.gesetze-im-internet.de/ksg/__3.html
+      \endverb
+      \verb{url}
+      \verb https://www.gesetze-im-internet.de/ksg/__3.html
+      \endverb
+    \endentry
+    \entry{Lovelace2017}{article}{}
+      \name{author}{6}{}{%
+        {{hash=c54b1567b34d5e4a29a0751f42d1e429}{%
+           family={Lovelace},
+           familyi={L\bibinitperiod},
+           given={Robin},
+           giveni={R\bibinitperiod}}}%
+        {{hash=36f8490517c1fa0e0bf9e17026e485ba}{%
+           family={Goodman},
+           familyi={G\bibinitperiod},
+           given={Anna},
+           giveni={A\bibinitperiod}}}%
+        {{hash=f72d71886b6d7fdf288b1fb1e62cff55}{%
+           family={Aldred},
+           familyi={A\bibinitperiod},
+           given={Rachel},
+           giveni={R\bibinitperiod}}}%
+        {{hash=1f139a4b5705e765868e9c9df0b49bfc}{%
+           family={Berkoff},
+           familyi={B\bibinitperiod},
+           given={Nikolai},
+           giveni={N\bibinitperiod}}}%
+        {{hash=7d13be0079c632e0cdcd1df26932809c}{%
+           family={Abbas},
+           familyi={A\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod}}}%
+        {{hash=82e2703e398272d799ca54045bee117e}{%
+           family={Woodcock},
+           familyi={W\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{e6d8f3d996b69d3bec3f07d9bbb1977a}
+      \strng{fullhash}{2aa2199e45fdb650dad8f69a53c1a3e2}
+      \strng{bibnamehash}{2aa2199e45fdb650dad8f69a53c1a3e2}
+      \strng{authorbibnamehash}{2aa2199e45fdb650dad8f69a53c1a3e2}
+      \strng{authornamehash}{e6d8f3d996b69d3bec3f07d9bbb1977a}
+      \strng{authorfullhash}{2aa2199e45fdb650dad8f69a53c1a3e2}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Transport and Land Use}
+      \field{number}{1}
+      \field{title}{The Propensity to Cycle Tool: An open source online system for sustainable transport planning}
+      \field{volume}{10}
+      \field{year}{2017}
+      \field{pages}{505\bibrangedash 528}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.5198/jtlu.2016.862
+      \endverb
+    \endentry
+    \entry{Luxen2011}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=c39b75997fba2969cf9ffeccc6176e97}{%
+           family={Luxen},
+           familyi={L\bibinitperiod},
+           given={Dennis},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b84a32e29c57604b46ef3ae4cf7ba6ab}{%
+           family={Vetter},
+           familyi={V\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{097fad2cb4654f4012500037905f5b22}
+      \strng{fullhash}{097fad2cb4654f4012500037905f5b22}
+      \strng{bibnamehash}{097fad2cb4654f4012500037905f5b22}
+      \strng{authorbibnamehash}{097fad2cb4654f4012500037905f5b22}
+      \strng{authornamehash}{097fad2cb4654f4012500037905f5b22}
+      \strng{authorfullhash}{097fad2cb4654f4012500037905f5b22}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 19th ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems}
+      \field{title}{Real-time routing with {OpenStreetMap} data}
+      \field{year}{2011}
+      \field{pages}{513\bibrangedash 516}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1145/2093973.2094062
+      \endverb
+    \endentry
+    \entry{Madsen2017}{article}{}
+      \name{author}{2}{}{%
+        {{hash=28cdb5e06bd384ee103b365b2daa2be5}{%
+           family={Madsen},
+           familyi={M\bibinitperiod},
+           given={Tanja\bibnamedelimb Kidholm\bibnamedelima Osmann},
+           giveni={T\bibinitperiod\bibinitdelim K\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{hash=3b100766c1dcdc9d34965cb2d80855d9}{%
+           family={Lahrmann},
+           familyi={L\bibinitperiod},
+           given={Harry},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{26af650ddad4c7653e7f001ec8e0ead2}
+      \strng{fullhash}{26af650ddad4c7653e7f001ec8e0ead2}
+      \strng{bibnamehash}{26af650ddad4c7653e7f001ec8e0ead2}
+      \strng{authorbibnamehash}{26af650ddad4c7653e7f001ec8e0ead2}
+      \strng{authornamehash}{26af650ddad4c7653e7f001ec8e0ead2}
+      \strng{authorfullhash}{26af650ddad4c7653e7f001ec8e0ead2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Research Part F: Traffic Psychology and Behaviour}
+      \field{title}{Comparison of five bicycle facility designs in signalized intersections using traffic conflict studies}
+      \field{volume}{46}
+      \field{year}{2017}
+      \field{pages}{438\bibrangedash 450}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1016/j.trf.2016.06.021
+      \endverb
+    \endentry
+    \entry{May1990}{book}{}
+      \name{author}{1}{}{%
+        {{hash=5b38987b2e60a886f985971d21913410}{%
+           family={May},
+           familyi={M\bibinitperiod},
+           given={Adolf\bibnamedelima D.},
+           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{5b38987b2e60a886f985971d21913410}
+      \strng{fullhash}{5b38987b2e60a886f985971d21913410}
+      \strng{bibnamehash}{5b38987b2e60a886f985971d21913410}
+      \strng{authorbibnamehash}{5b38987b2e60a886f985971d21913410}
+      \strng{authornamehash}{5b38987b2e60a886f985971d21913410}
+      \strng{authorfullhash}{5b38987b2e60a886f985971d21913410}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Traffic Flow Fundamentals}
+      \field{year}{1990}
+    \endentry
+    \entry{Mekuria2012}{report}{}
+      \name{author}{3}{}{%
+        {{hash=09defe0e6584d96f9228c4aaabf0fe5f}{%
+           family={Mekuria},
+           familyi={M\bibinitperiod},
+           given={Maaza\bibnamedelima C.},
+           giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=e3e164b724148bc0392f4a68bcf53996}{%
+           family={Furth},
+           familyi={F\bibinitperiod},
+           given={Peter\bibnamedelima G.},
+           giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=21df2944a9659fa7aa4001e785a34319}{%
+           family={Nixon},
+           familyi={N\bibinitperiod},
+           given={Hilary},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Mineta Transportation Institute, San José State University}%
+      }
+      \strng{namehash}{22aaae3caab5646eb7a033ba5c4b8536}
+      \strng{fullhash}{8a7390c6117f07797bfc02929dbfef75}
+      \strng{bibnamehash}{8a7390c6117f07797bfc02929dbfef75}
+      \strng{authorbibnamehash}{8a7390c6117f07797bfc02929dbfef75}
+      \strng{authornamehash}{22aaae3caab5646eb7a033ba5c4b8536}
+      \strng{authorfullhash}{8a7390c6117f07797bfc02929dbfef75}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{11-19}
+      \field{title}{Low-Stress Bicycling and Network Connectivity}
+      \field{year}{2012}
+      \verb{urlraw}
+      \verb https://scholarworks.sjsu.edu/mti_publications/74/
+      \endverb
+      \verb{url}
+      \verb https://scholarworks.sjsu.edu/mti_publications/74/
+      \endverb
+    \endentry
+    \entry{mycargobike}{online}{}
+      \name{author}{1}{}{%
+        {{hash=21018986b9b88e44e554ab50c3f23b28}{%
+           family={{mycargobike.de}},
+           familyi={m\bibinitperiod}}}%
+      }
+      \strng{namehash}{21018986b9b88e44e554ab50c3f23b28}
+      \strng{fullhash}{21018986b9b88e44e554ab50c3f23b28}
+      \strng{bibnamehash}{21018986b9b88e44e554ab50c3f23b28}
+      \strng{authorbibnamehash}{21018986b9b88e44e554ab50c3f23b28}
+      \strng{authornamehash}{21018986b9b88e44e554ab50c3f23b28}
+      \strng{authorfullhash}{21018986b9b88e44e554ab50c3f23b28}
+      \field{sortinit}{m}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Long John -- Lastenrad-Spezialist}
+      \field{urlday}{2}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{o.\,D.}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://mycargobike.de/produkte/long-john/
+      \endverb
+      \verb{url}
+      \verb https://mycargobike.de/produkte/long-john/
+      \endverb
+    \endentry
+    \entry{Notter2025}{report}{}
+      \name{author}{6}{}{%
+        {{hash=22028e46ced24ef443a5fc6334de40f6}{%
+           family={Notter},
+           familyi={N\bibinitperiod},
+           given={Benedikt},
+           giveni={B\bibinitperiod}}}%
+        {{hash=183be28ab6d2ad7d456db201604c4143}{%
+           family={Cox},
+           familyi={C\bibinitperiod},
+           given={Brian},
+           giveni={B\bibinitperiod}}}%
+        {{hash=65a66e910ea099e005655d8cf861dc5f}{%
+           family={{Vuorenmaa Berdica}},
+           familyi={V\bibinitperiod},
+           given={Katarina},
+           giveni={K\bibinitperiod}}}%
+        {{hash=4ddaaf1c930721254c00b3e488c7219e}{%
+           family={Sahlgren},
+           familyi={S\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=d2d654c12bbe28977fac8982202325cd}{%
+           family={Kräck},
+           familyi={K\bibinitperiod},
+           given={Judith},
+           giveni={J\bibinitperiod}}}%
+        {{hash=b31c2278e006685eced952af0c095a5c}{%
+           family={Heidt},
+           familyi={H\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Umweltbundesamt}%
+      }
+      \strng{namehash}{e680dc98e5b74bdbdf28dda72675437b}
+      \strng{fullhash}{8abe32a8fcc634f2f4755b6d57c020d0}
+      \strng{bibnamehash}{8abe32a8fcc634f2f4755b6d57c020d0}
+      \strng{authorbibnamehash}{8abe32a8fcc634f2f4755b6d57c020d0}
+      \strng{authornamehash}{e680dc98e5b74bdbdf28dda72675437b}
+      \strng{authorfullhash}{8abe32a8fcc634f2f4755b6d57c020d0}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{TEXTE 108/2025}
+      \field{title}{{HBEFA} Traffic Situations -- Application Guidelines}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.60810/openumwelt-8047
+      \endverb
+    \endentry
+    \entry{OpenStreetMap}{online}{}
+      \name{author}{1}{}{%
+        {{hash=602f2591276bacf4409eba4a627cff11}{%
+           family={{OpenStreetMap contributors}},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{602f2591276bacf4409eba4a627cff11}
+      \strng{fullhash}{602f2591276bacf4409eba4a627cff11}
+      \strng{bibnamehash}{602f2591276bacf4409eba4a627cff11}
+      \strng{authorbibnamehash}{602f2591276bacf4409eba4a627cff11}
+      \strng{authornamehash}{602f2591276bacf4409eba4a627cff11}
+      \strng{authorfullhash}{602f2591276bacf4409eba4a627cff11}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{OpenStreetMap}}
+      \field{urlday}{20}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{o.\,D.}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.openstreetmap.org
+      \endverb
+      \verb{url}
+      \verb https://www.openstreetmap.org
+      \endverb
+    \endentry
+    \entry{Ortuzar2011}{book}{}
+      \name{author}{2}{}{%
+        {{hash=f38ddf9d5d399e56d7f74e635d4482a2}{%
+           family={{Ortúzar}},
+           familyi={O\bibinitperiod},
+           given={Juan\bibnamedelimb de\bibnamedelima Dios},
+           giveni={J\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=df76e52e1ed54b671f6b8fbb75d9a39c}{%
+           family={Willumsen},
+           familyi={W\bibinitperiod},
+           given={Luis\bibnamedelima G.},
+           giveni={L\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{2f511aed9eb1b8bb6045137cec17b11b}
+      \strng{fullhash}{2f511aed9eb1b8bb6045137cec17b11b}
+      \strng{bibnamehash}{2f511aed9eb1b8bb6045137cec17b11b}
+      \strng{authorbibnamehash}{2f511aed9eb1b8bb6045137cec17b11b}
+      \strng{authornamehash}{2f511aed9eb1b8bb6045137cec17b11b}
+      \strng{authorfullhash}{2f511aed9eb1b8bb6045137cec17b11b}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4}
+      \field{title}{Modelling Transport}
+      \field{year}{2011}
+      \verb{doi}
+      \verb 10.1002/9781119993308
+      \endverb
+    \endentry
+    \entry{Pedalpower2025}{online}{}
+      \name{author}{1}{}{%
+        {{hash=193e613f25ac083bcd4fff67ce92b3e2}{%
+           family={{Pedalpower}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{193e613f25ac083bcd4fff67ce92b3e2}
+      \strng{fullhash}{193e613f25ac083bcd4fff67ce92b3e2}
+      \strng{bibnamehash}{193e613f25ac083bcd4fff67ce92b3e2}
+      \strng{authorbibnamehash}{193e613f25ac083bcd4fff67ce92b3e2}
+      \strng{authornamehash}{193e613f25ac083bcd4fff67ce92b3e2}
+      \strng{authorfullhash}{193e613f25ac083bcd4fff67ce92b3e2}
+      \field{extraname}{1}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Preisliste {PP} Lastenräder / Cargo Bikes, gültig ab 01.04.2025}
+      \field{urlday}{10}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://pedalpower.de/wp-content/uploads/2025/05/250326_PW_Preisliste-PP-Lastenraeder-Cargo-Bikes-01.04.2025.pdf
+      \endverb
+      \verb{url}
+      \verb https://pedalpower.de/wp-content/uploads/2025/05/250326_PW_Preisliste-PP-Lastenraeder-Cargo-Bikes-01.04.2025.pdf
+      \endverb
+    \endentry
+    \entry{PedalpowerND}{online}{}
+      \name{author}{1}{}{%
+        {{hash=193e613f25ac083bcd4fff67ce92b3e2}{%
+           family={{Pedalpower}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{193e613f25ac083bcd4fff67ce92b3e2}
+      \strng{fullhash}{193e613f25ac083bcd4fff67ce92b3e2}
+      \strng{bibnamehash}{193e613f25ac083bcd4fff67ce92b3e2}
+      \strng{authorbibnamehash}{193e613f25ac083bcd4fff67ce92b3e2}
+      \strng{authornamehash}{193e613f25ac083bcd4fff67ce92b3e2}
+      \strng{authorfullhash}{193e613f25ac083bcd4fff67ce92b3e2}
+      \field{extraname}{2}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Aufbauten Berliner Lastenrad}
+      \field{urlday}{2}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{o.\,D.}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://pedalpower.de/aufbauten-berliner-lastenrad/
+      \endverb
+      \verb{url}
+      \verb https://pedalpower.de/aufbauten-berliner-lastenrad/
+      \endverb
+    \endentry
+    \entry{Prato2009}{article}{}
+      \name{author}{1}{}{%
+        {{hash=625096011b41be17db4eae1689f2b782}{%
+           family={Prato},
+           familyi={P\bibinitperiod},
+           given={Carlo\bibnamedelima Giacomo},
+           giveni={C\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \strng{namehash}{625096011b41be17db4eae1689f2b782}
+      \strng{fullhash}{625096011b41be17db4eae1689f2b782}
+      \strng{bibnamehash}{625096011b41be17db4eae1689f2b782}
+      \strng{authorbibnamehash}{625096011b41be17db4eae1689f2b782}
+      \strng{authornamehash}{625096011b41be17db4eae1689f2b782}
+      \strng{authorfullhash}{625096011b41be17db4eae1689f2b782}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Choice Modelling}
+      \field{number}{1}
+      \field{title}{Route choice modeling: Past, present and future research directions}
+      \field{volume}{2}
+      \field{year}{2009}
+      \field{pages}{65\bibrangedash 100}
+      \range{pages}{36}
+      \verb{doi}
+      \verb 10.1016/S1755-5345(13)70005-8
+      \endverb
+    \endentry
+    \entry{Destatis2025b}{online}{}
+      \name{author}{1}{}{%
+        {{hash=c67d4b4a4397f84a4fe4580e6f9aa63d}{%
+           family={{Statistisches Bundesamt}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{hash=1b362769cbab2008398a2850d7e6c0a0}{%
+           family={{Destatis}},
+           familyi={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{1b362769cbab2008398a2850d7e6c0a0}
+      \strng{fullhash}{c67d4b4a4397f84a4fe4580e6f9aa63d}
+      \strng{bibnamehash}{1b362769cbab2008398a2850d7e6c0a0}
+      \strng{authorbibnamehash}{c67d4b4a4397f84a4fe4580e6f9aa63d}
+      \strng{authornamehash}{c67d4b4a4397f84a4fe4580e6f9aa63d}
+      \strng{authorfullhash}{c67d4b4a4397f84a4fe4580e6f9aa63d}
+      \strng{shortauthorbibnamehash}{1b362769cbab2008398a2850d7e6c0a0}
+      \strng{shortauthornamehash}{1b362769cbab2008398a2850d7e6c0a0}
+      \strng{shortauthorfullhash}{1b362769cbab2008398a2850d7e6c0a0}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{title}{Ältere Menschen: Stadt-Land-Unterschiede}
+      \field{urlday}{20}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.destatis.de/DE/Themen/Querschnitt/Demografischer-Wandel/Aeltere-Menschen/stadt-land.html
+      \endverb
+      \verb{url}
+      \verb https://www.destatis.de/DE/Themen/Querschnitt/Demografischer-Wandel/Aeltere-Menschen/stadt-land.html
+      \endverb
+    \endentry
+    \entry{Destatis2025a}{online}{}
+      \name{author}{1}{}{%
+        {{hash=c67d4b4a4397f84a4fe4580e6f9aa63d}{%
+           family={{Statistisches Bundesamt}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{hash=1b362769cbab2008398a2850d7e6c0a0}{%
+           family={{Destatis}},
+           familyi={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{1b362769cbab2008398a2850d7e6c0a0}
+      \strng{fullhash}{c67d4b4a4397f84a4fe4580e6f9aa63d}
+      \strng{bibnamehash}{1b362769cbab2008398a2850d7e6c0a0}
+      \strng{authorbibnamehash}{c67d4b4a4397f84a4fe4580e6f9aa63d}
+      \strng{authornamehash}{c67d4b4a4397f84a4fe4580e6f9aa63d}
+      \strng{authorfullhash}{c67d4b4a4397f84a4fe4580e6f9aa63d}
+      \strng{shortauthorbibnamehash}{1b362769cbab2008398a2850d7e6c0a0}
+      \strng{shortauthornamehash}{1b362769cbab2008398a2850d7e6c0a0}
+      \strng{shortauthorfullhash}{1b362769cbab2008398a2850d7e6c0a0}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{title}{Demografie: Bevölkerung im Wandel}
+      \field{urlday}{20}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.destatis.de/DE/Themen/Querschnitt/Demografischer-Wandel/demografie-mitten-im-wandel.html
+      \endverb
+      \verb{url}
+      \verb https://www.destatis.de/DE/Themen/Querschnitt/Demografischer-Wandel/demografie-mitten-im-wandel.html
+      \endverb
+    \endentry
+    \entry{StiftTilbeck2026}{online}{}
+      \name{author}{1}{}{%
+        {{hash=b8c95017d171084ff7109825dfbda5a4}{%
+           family={{Stift Tilbeck}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b8c95017d171084ff7109825dfbda5a4}
+      \strng{fullhash}{b8c95017d171084ff7109825dfbda5a4}
+      \strng{bibnamehash}{b8c95017d171084ff7109825dfbda5a4}
+      \strng{authorbibnamehash}{b8c95017d171084ff7109825dfbda5a4}
+      \strng{authornamehash}{b8c95017d171084ff7109825dfbda5a4}
+      \strng{authorfullhash}{b8c95017d171084ff7109825dfbda5a4}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Online-Shop -- Handgemachte Produkte}
+      \field{urlday}{20}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://shop.stift-tilbeck.de/Produkte/Handgemachtes/
+      \endverb
+      \verb{url}
+      \verb https://shop.stift-tilbeck.de/Produkte/Handgemachtes/
+      \endverb
+    \endentry
+    \entry{StVO2013}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=421170275ec9a765e073c23b26032a01}{%
+           family={{StVO}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{421170275ec9a765e073c23b26032a01}
+      \strng{fullhash}{421170275ec9a765e073c23b26032a01}
+      \strng{bibnamehash}{421170275ec9a765e073c23b26032a01}
+      \strng{authorbibnamehash}{421170275ec9a765e073c23b26032a01}
+      \strng{authornamehash}{421170275ec9a765e073c23b26032a01}
+      \strng{authorfullhash}{421170275ec9a765e073c23b26032a01}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Bundesministerium der Justiz (Hrsg.).}
+      \field{title}{Straßenverkehrs-Ordnung, § 3 (zulässige Höchstgeschwindigkeit) und Anlage 3 (verkehrsberuhigter Bereich, Zeichen 325.1/325.2)}
+      \field{urlday}{16}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2013}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.gesetze-im-internet.de/stvo_2013/
+      \endverb
+      \verb{url}
+      \verb https://www.gesetze-im-internet.de/stvo_2013/
+      \endverb
+    \endentry
+    \entry{TRB2022}{report}{}
+      \name{author}{1}{}{%
+        {{hash=8b754be99a1e96e2615eea8ac97dc12d}{%
+           family={{Transportation Research Board}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \name{shortauthor}{1}{}{%
+        {{hash=be614cc39405815ed250b89a0627b363}{%
+           family={{TRB}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {National Academies Press}%
+      }
+      \strng{namehash}{be614cc39405815ed250b89a0627b363}
+      \strng{fullhash}{8b754be99a1e96e2615eea8ac97dc12d}
+      \strng{bibnamehash}{be614cc39405815ed250b89a0627b363}
+      \strng{authorbibnamehash}{8b754be99a1e96e2615eea8ac97dc12d}
+      \strng{authornamehash}{8b754be99a1e96e2615eea8ac97dc12d}
+      \strng{authorfullhash}{8b754be99a1e96e2615eea8ac97dc12d}
+      \strng{shortauthorbibnamehash}{be614cc39405815ed250b89a0627b363}
+      \strng{shortauthornamehash}{be614cc39405815ed250b89a0627b363}
+      \strng{shortauthorfullhash}{be614cc39405815ed250b89a0627b363}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{shortauthor}
+      \field{labeltitlesource}{title}
+      \field{edition}{7}
+      \field{title}{Highway Capacity Manual}
+      \field{year}{2022}
+      \verb{doi}
+      \verb 10.17226/26432
+      \endverb
+    \endentry
+    \entry{Winter2002}{article}{}
+      \name{author}{1}{}{%
+        {{hash=c627d46a9268054e9f7ee7906282aa1e}{%
+           family={Winter},
+           familyi={W\bibinitperiod},
+           given={Stephan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{c627d46a9268054e9f7ee7906282aa1e}
+      \strng{fullhash}{c627d46a9268054e9f7ee7906282aa1e}
+      \strng{bibnamehash}{c627d46a9268054e9f7ee7906282aa1e}
+      \strng{authorbibnamehash}{c627d46a9268054e9f7ee7906282aa1e}
+      \strng{authornamehash}{c627d46a9268054e9f7ee7906282aa1e}
+      \strng{authorfullhash}{c627d46a9268054e9f7ee7906282aa1e}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{GeoInformatica}
+      \field{number}{4}
+      \field{title}{Modeling costs of turns in route planning}
+      \field{volume}{6}
+      \field{year}{2002}
+      \field{pages}{345\bibrangedash 361}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1023/A:1020853410145
+      \endverb
+    \endentry
+    \entry{Winters2012}{article}{}
+      \name{author}{14}{}{%
+        {{hash=e0e825f645d6c88a4fa20cf7f2f37cc6}{%
+           family={Winters},
+           familyi={W\bibinitperiod},
+           given={Meghan},
+           giveni={M\bibinitperiod}}}%
+        {{hash=acf766ab173922ac3340f40a581a8012}{%
+           family={Babul},
+           familyi={B\bibinitperiod},
+           given={Shelina},
+           giveni={S\bibinitperiod}}}%
+        {{hash=73a0e6c86bffcac79e2ed31ad0c60dd5}{%
+           family={Becker},
+           familyi={B\bibinitperiod},
+           given={H.\bibnamedelimi Jaime},
+           giveni={H\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=87b1662909ba8b2349a268ac9f566414}{%
+           family={Brubacher},
+           familyi={B\bibinitperiod},
+           given={Jeffrey\bibnamedelima R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=3e4f2eb96be0523bc24caf51fea51c4f}{%
+           family={Chipman},
+           familyi={C\bibinitperiod},
+           given={Mary},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2c571ac6866edf989a10301bf60b33de}{%
+           family={Cripton},
+           familyi={C\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=e005c00c37305a621ac3b4c4bb7eefa3}{%
+           family={Cusimano},
+           familyi={C\bibinitperiod},
+           given={Michael\bibnamedelima D.},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=4bd8ec7a2ee6153a3424309b20ccaf35}{%
+           family={Friedman},
+           familyi={F\bibinitperiod},
+           given={Steven\bibnamedelima M.},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=bbc4edd1fb8fb4c4fc31a5e5b4d824d6}{%
+           family={Harris},
+           familyi={H\bibinitperiod},
+           given={M.\bibnamedelimi Anne},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=01c093015a76e07f8f1f8c6c27887af6}{%
+           family={Hunte},
+           familyi={H\bibinitperiod},
+           given={Garth},
+           giveni={G\bibinitperiod}}}%
+        {{hash=2d89578ffa014b099cff08d7d084b46d}{%
+           family={Monro},
+           familyi={M\bibinitperiod},
+           given={Melody},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c66351ccd4f2803ad4b88f9b29ce7726}{%
+           family={Reynolds},
+           familyi={R\bibinitperiod},
+           given={Conor\bibnamedelimb C.\bibnamedelimi O.},
+           giveni={C\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{hash=39d088a3bf8c7a92bacab6c0e8495a84}{%
+           family={Shen},
+           familyi={S\bibinitperiod},
+           given={Hui},
+           giveni={H\bibinitperiod}}}%
+        {{hash=b47eb1c1dc68be8088d299ff815827dd}{%
+           family={Teschke},
+           familyi={T\bibinitperiod},
+           given={Kay},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{fe55e6167989609e15565b3d17f3c5ae}
+      \strng{fullhash}{7089a835f3fcc9eddc84ad5ececea06f}
+      \strng{bibnamehash}{7089a835f3fcc9eddc84ad5ececea06f}
+      \strng{authorbibnamehash}{7089a835f3fcc9eddc84ad5ececea06f}
+      \strng{authornamehash}{fe55e6167989609e15565b3d17f3c5ae}
+      \strng{authorfullhash}{7089a835f3fcc9eddc84ad5ececea06f}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Journal of Preventive Medicine}
+      \field{number}{6}
+      \field{title}{Route preferences of cyclists}
+      \field{volume}{43}
+      \field{year}{2012}
+      \field{pages}{621\bibrangedash 626}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1016/j.amepre.2012.06.025
+      \endverb
+    \endentry
+    \entry{Ziliaskopoulos1996}{article}{}
+      \name{author}{2}{}{%
+        {{hash=4167c3fcf2fea60561a00f89fcdcb2e8}{%
+           family={Ziliaskopoulos},
+           familyi={Z\bibinitperiod},
+           given={Athanasios\bibnamedelima K.},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=e774bdd362f02721f71bb15cfb47f398}{%
+           family={Mahmassani},
+           familyi={M\bibinitperiod},
+           given={Hani\bibnamedelima S.},
+           giveni={H\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{28a9dae9a00468eaab5a4bad7f5a9bc2}
+      \strng{fullhash}{28a9dae9a00468eaab5a4bad7f5a9bc2}
+      \strng{bibnamehash}{28a9dae9a00468eaab5a4bad7f5a9bc2}
+      \strng{authorbibnamehash}{28a9dae9a00468eaab5a4bad7f5a9bc2}
+      \strng{authornamehash}{28a9dae9a00468eaab5a4bad7f5a9bc2}
+      \strng{authorfullhash}{28a9dae9a00468eaab5a4bad7f5a9bc2}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Research Part B}
+      \field{number}{5}
+      \field{title}{A note on least time path computation considering delays and prohibitions for intersection movements}
+      \field{volume}{30}
+      \field{year}{1996}
+      \field{pages}{359\bibrangedash 367}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1016/0191-2615(96)00001-X
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

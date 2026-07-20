@@ -1,0 +1,36 @@
+\babel@toc {ngerman}{}\relax 
+\contentsline {chapter}{Zusammenfassung}{i}{chapter*.1}%
+\contentsline {chapter}{Bildverzeichnis}{iii}{chapter*.3}%
+\contentsline {chapter}{Tabellenverzeichnis}{iv}{chapter*.4}%
+\contentsline {chapter}{Abkürzungsverzeichnis}{iv}{chapter*.5}%
+\contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Hintergrund und Anlass}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Vorgehensweise und Methodik}{1}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Ist-Zustand}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Untersuchungsgebiet Havixbeck}{2}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Analyse der bestehenden Logistikstrukturen}{3}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Auswahl der Akteure}{4}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Stift Tilbeck}{4}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Landwirtschaftliche Betriebe}{5}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Routing}{6}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Warum eine eigene Routing-Engine entwickelt wurde}{6}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Aufbau der Routing-Engine}{6}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Kinematisches Fahrzeitmodell}{7}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Straßentyp-Präferenz beim Pkw-Routing}{7}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Bike-Score und wahrgenommene Fahrzeit}{7}{subsection.4.2.3}%
+\contentsline {subsubsection}{Getrennte Radwege im Untersuchungsgebiet}{8}{subsubsection*.13}%
+\contentsline {subsection}{\numberline {4.2.4}CO\textsubscript {2}-Modell}{8}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}Von Kanten-Scores zu Liefertouren: automatische und manuelle Schleifen}{11}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Kartendarstellung}{12}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Maßnahmen / Konzept}{12}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Konzept 1: Stift Tilbeck}{12}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Konzept 2: Lieferungen von Landwirtschaftsbetrieben zu Gastronomien}{14}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Direkte Anbindung an den Wochenmarkt}{16}{subsection.5.2.1}%
+\contentsline {section}{\numberline {5.3}Konzept 3: Abhollogistik von Gastronomien bei den Landwirtschaftsbetrieben}{17}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Restaurants (Abholung)}{18}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Lebensmittelhandel (Anlieferung)}{19}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Abholung vs.\ Anlieferung}{20}{subsection.5.3.3}%
+\contentsline {chapter}{\numberline {6}Fazit und Ausblick}{20}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Empfohlene Umsetzungsstufen}{21}{section.6.1}%
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{22}{chapter*.24}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
