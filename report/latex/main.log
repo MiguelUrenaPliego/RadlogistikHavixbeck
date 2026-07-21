@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.5)  21 JUL 2026 12:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.5)  21 JUL 2026 12:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1600,11 +1600,11 @@ on input line 559.
 (pdftex.def)             Requested size: 386.96027pt x 211.46957pt.
 File: logos/UIREKA_logo_trim.png Graphic file (type png)
 <use logos/UIREKA_logo_trim.png>
-Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 590.
+Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 589.
 (pdftex.def)             Requested size: 82.66736pt x 21.33955pt.
 File: logos/FUAS_logo_trim.jpg Graphic file (type jpg)
 <use logos/FUAS_logo_trim.jpg>
-Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 590.
+Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 589.
 (pdftex.def)             Requested size: 53.0159pt x 21.33955pt.
  [15 <./figures/fig15_carlacargo_anhaenger.jpg> <./figures/fig12_anliefermodell
 _landwirtschaft.jpg>]
@@ -1612,73 +1612,63 @@ _landwirtschaft.jpg>]
 File: figures/fig13_wochenmarkt_zentral.jpg Graphic file (type jpg)
 <use figures/fig13_wochenmarkt_zentral.jpg>
 Package pdftex.def Info: figures/fig13_wochenmarkt_zentral.jpg  used on input l
-ine 601.
+ine 600.
 (pdftex.def)             Requested size: 386.96027pt x 210.93217pt.
 File: logos/UIREKA_logo_trim.png Graphic file (type png)
 <use logos/UIREKA_logo_trim.png>
-Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 640.
+Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 638.
 (pdftex.def)             Requested size: 82.66736pt x 21.33955pt.
 File: logos/FUAS_logo_trim.jpg Graphic file (type jpg)
 <use logos/FUAS_logo_trim.jpg>
-Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 640.
+Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 638.
 (pdftex.def)             Requested size: 53.0159pt x 21.33955pt.
- [16]
+ [16 <./figures/fig13_wochenmarkt_zentral.jpg>]
 File: logos/UIREKA_logo_trim.png Graphic file (type png)
 <use logos/UIREKA_logo_trim.png>
-Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 645.
+Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 651.
 (pdftex.def)             Requested size: 82.66736pt x 21.33955pt.
 File: logos/FUAS_logo_trim.jpg Graphic file (type jpg)
 <use logos/FUAS_logo_trim.jpg>
-Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 645.
+Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 651.
 (pdftex.def)             Requested size: 53.0159pt x 21.33955pt.
  [17]
 LaTeX Font Info:    Faking \texteuro for font family Crlt-OsF
-(Font)              in TS1 encoding on input line 655.
-<figures/fig17_long_john.jpg, id=376, 1236.62pt x 852.18375pt>
+(Font)              in TS1 encoding on input line 653.
+<figures/fig17_long_john.jpg, id=377, 1236.62pt x 852.18375pt>
 File: figures/fig17_long_john.jpg Graphic file (type jpg)
 <use figures/fig17_long_john.jpg>
-Package pdftex.def Info: figures/fig17_long_john.jpg  used on input line 659.
+Package pdftex.def Info: figures/fig17_long_john.jpg  used on input line 657.
 (pdftex.def)             Requested size: 273.14923pt x 188.23518pt.
-File: logos/UIREKA_logo_trim.png Graphic file (type png)
-<use logos/UIREKA_logo_trim.png>
-Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 665.
-(pdftex.def)             Requested size: 82.66736pt x 21.33955pt.
-File: logos/FUAS_logo_trim.jpg Graphic file (type jpg)
-<use logos/FUAS_logo_trim.jpg>
-Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 665.
-(pdftex.def)             Requested size: 53.0159pt x 21.33955pt.
- [18 <./figures/fig13_wochenmarkt_zentral.jpg>]
-<figures/fig10_abholmodell_restaurants.jpg, id=385, 2890.8pt x 1561.835pt>
+<figures/fig10_abholmodell_restaurants.jpg, id=380, 2890.8pt x 1561.835pt>
 File: figures/fig10_abholmodell_restaurants.jpg Graphic file (type jpg)
 <use figures/fig10_abholmodell_restaurants.jpg>
 Package pdftex.def Info: figures/fig10_abholmodell_restaurants.jpg  used on inp
-ut line 670.
+ut line 668.
 (pdftex.def)             Requested size: 386.96027pt x 209.05125pt.
 File: logos/UIREKA_logo_trim.png Graphic file (type png)
 <use logos/UIREKA_logo_trim.png>
-Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 703.
+Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 701.
 (pdftex.def)             Requested size: 82.66736pt x 21.33955pt.
 File: logos/FUAS_logo_trim.jpg Graphic file (type jpg)
 <use logos/FUAS_logo_trim.jpg>
-Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 703.
+Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 701.
 (pdftex.def)             Requested size: 53.0159pt x 21.33955pt.
- [19 <./figures/fig17_long_john.jpg> <./figures/fig10_abholmodell_restaurants.j
-pg>]
-<figures/fig11_anliefermodell_restaurants.jpg, id=397, 2890.8pt x 1575.8875pt>
+ [18 <./figures/fig17_long_john.jpg>]
+<figures/fig11_anliefermodell_restaurants.jpg, id=392, 2890.8pt x 1575.8875pt>
 File: figures/fig11_anliefermodell_restaurants.jpg Graphic file (type jpg)
 <use figures/fig11_anliefermodell_restaurants.jpg>
 Package pdftex.def Info: figures/fig11_anliefermodell_restaurants.jpg  used on 
-input line 712.
+input line 710.
 (pdftex.def)             Requested size: 386.96027pt x 210.93217pt.
 File: logos/UIREKA_logo_trim.png Graphic file (type png)
 <use logos/UIREKA_logo_trim.png>
-Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 747.
+Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 775.
 (pdftex.def)             Requested size: 82.66736pt x 21.33955pt.
 File: logos/FUAS_logo_trim.jpg Graphic file (type jpg)
 <use logos/FUAS_logo_trim.jpg>
-Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 747.
+Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 775.
 (pdftex.def)             Requested size: 53.0159pt x 21.33955pt.
- [20 <./figures/fig11_anliefermodell_restaurants.jpg>]
+ [19]
 chapter 6.
 
 Class scrreprt Warning: Redefinition of \@makechapterhead detected.
@@ -1693,36 +1683,37 @@ Class scrreprt Warning: Redefinition of \@makechapterhead detected.
 
 File: logos/UIREKA_logo_trim.png Graphic file (type png)
 <use logos/UIREKA_logo_trim.png>
-Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 786.
+Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 789.
 (pdftex.def)             Requested size: 82.66736pt x 21.33955pt.
 File: logos/FUAS_logo_trim.jpg Graphic file (type jpg)
 <use logos/FUAS_logo_trim.jpg>
-Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 786.
+Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 789.
 (pdftex.def)             Requested size: 53.0159pt x 21.33955pt.
-[21]
+[20]
 LaTeX Font Info:    Trying to load font information for TS1+Crlt-OsF on input l
-ine 796.
+ine 793.
  (/usr/share/texlive/texmf-dist/tex/latex/carlito/TS1Crlt-OsF.fd
 File: TS1Crlt-OsF.fd 2022/10/05 (autoinst) Font definitions for TS1/Crlt-OsF.
 )
 File: logos/UIREKA_logo_trim.png Graphic file (type png)
 <use logos/UIREKA_logo_trim.png>
-Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 801.
+Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 794.
 (pdftex.def)             Requested size: 82.66736pt x 21.33955pt.
 File: logos/FUAS_logo_trim.jpg Graphic file (type jpg)
 <use logos/FUAS_logo_trim.jpg>
-Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 801.
+Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 794.
 (pdftex.def)             Requested size: 53.0159pt x 21.33955pt.
- [22{/usr/share/texlive/texmf-dist/fonts/enc/dvips/carlito/crlt_j4hweq.enc}]
+ [21 <./figures/fig10_abholmodell_restaurants.jpg> <./figures/fig11_anliefermod
+ell_restaurants.jpg>]
 File: logos/UIREKA_logo_trim.png Graphic file (type png)
 <use logos/UIREKA_logo_trim.png>
-Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 803.
+Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 800.
 (pdftex.def)             Requested size: 82.66736pt x 21.33955pt.
 File: logos/FUAS_logo_trim.jpg Graphic file (type jpg)
 <use logos/FUAS_logo_trim.jpg>
-Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 803.
+Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 800.
 (pdftex.def)             Requested size: 53.0159pt x 21.33955pt.
- [23]
+ [22{/usr/share/texlive/texmf-dist/fonts/enc/dvips/carlito/crlt_j4hweq.enc}]
 chapter without number
 
 Class scrreprt Warning: Redefinition of \@makechapterhead detected.
@@ -1737,16 +1728,16 @@ Class scrreprt Warning: Redefinition of \@makechapterhead detected.
 
 File: logos/UIREKA_logo_trim.png Graphic file (type png)
 <use logos/UIREKA_logo_trim.png>
-Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 804.
+Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 801.
 (pdftex.def)             Requested size: 82.66736pt x 21.33955pt.
 File: logos/FUAS_logo_trim.jpg Graphic file (type jpg)
 <use logos/FUAS_logo_trim.jpg>
-Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 804.
+Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 801.
 (pdftex.def)             Requested size: 53.0159pt x 21.33955pt.
-[24
+[23
 
 ]
-Underfull \hbox (badness 1158) in paragraph at lines 804--804
+Underfull \hbox (badness 1158) in paragraph at lines 801--801
 [][]\T1/Crlt-OsF/m/n/10.95 Pedalpower (2025). \T1/Crlt-OsF/m/it/10.95 Preis-lis
 -te PP Las-ten-rä-der / Car-go Bikes, gül-tig ab 01.04.2025\T1/Crlt-OsF/m/n/10.
 95 . URL: [][]$\T1/cmtt/m/n/10.95 https :
@@ -1754,13 +1745,13 @@ Underfull \hbox (badness 1158) in paragraph at lines 804--804
 
 File: logos/UIREKA_logo_trim.png Graphic file (type png)
 <use logos/UIREKA_logo_trim.png>
-Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 806.
+Package pdftex.def Info: logos/UIREKA_logo_trim.png  used on input line 803.
 (pdftex.def)             Requested size: 82.66736pt x 21.33955pt.
 File: logos/FUAS_logo_trim.jpg Graphic file (type jpg)
 <use logos/FUAS_logo_trim.jpg>
-Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 806.
+Package pdftex.def Info: logos/FUAS_logo_trim.jpg  used on input line 803.
 (pdftex.def)             Requested size: 53.0159pt x 21.33955pt.
-[25] (./main.aux)
+[24] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1770,9 +1761,9 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 30556 strings out of 474222
- 607902 string characters out of 5748734
- 1961975 words of memory out of 5000000
+ 30555 strings out of 474222
+ 607895 string characters out of 5748734
+ 1958975 words of memory out of 5000000
  52308 multiletter control sequences out of 15000+600000
  707740 words of font info for 107 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
@@ -1787,10 +1778,10 @@ f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
 type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1
 000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on main.pdf (30 pages, 9385096 bytes).
+Output written on main.pdf (29 pages, 9384300 bytes).
 PDF statistics:
- 661 PDF objects out of 1000 (max. 8388607)
- 553 compressed objects within 6 object streams
- 123 named destinations out of 1000 (max. 500000)
+ 657 PDF objects out of 1000 (max. 8388607)
+ 550 compressed objects within 6 object streams
+ 122 named destinations out of 1000 (max. 500000)
  365 words of extra memory for PDF output out of 10000 (max. 10000000)
 

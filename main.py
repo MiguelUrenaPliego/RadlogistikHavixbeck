@@ -63,9 +63,9 @@ car_maxspeeds = {
     "trunk":          80,
     "trunk_link":     60,
     "track":          10,
-    "pedestrian":     1,
-    "footway":        1,
-    "cicleway":       1,
+    "pedestrian":     3,
+    "footway":        3,
+    "cicleway":       3,
     "unclassified":   30,
 }
 
@@ -91,8 +91,8 @@ ebike_maxspeeds = {
     # Schrittgeschwindigkeit); ways shared with pedestrians are capped at
     # 10 km/h regardless of road class.
     "living_street":  7,    # same StVO Schrittgeschwindigkeit requirement applies to cyclists
-    "motorway":        1,
-    "motorway_link":   1,
+    "motorway":        3,
+    "motorway_link":   3,
     "primary":        25,
     "primary_link":   25,
     "residential":    25,
