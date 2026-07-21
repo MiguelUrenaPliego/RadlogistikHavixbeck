@@ -2382,62 +2382,53 @@
     <bcf:citekey order="16" intorder="2">GraphHopper</bcf:citekey>
     <bcf:citekey order="16" intorder="3">Brenschede</bcf:citekey>
     <bcf:citekey order="16" intorder="4">CycleStreets</bcf:citekey>
-    <bcf:citekey order="17" intorder="1">Ortuzar2011</bcf:citekey>
-    <bcf:citekey order="17" intorder="2">Prato2009</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">May1990</bcf:citekey>
-    <bcf:citekey order="18" intorder="2">TRB2022</bcf:citekey>
-    <bcf:citekey order="18" intorder="3">Guth2020</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">Kirby1969</bcf:citekey>
-    <bcf:citekey order="19" intorder="2">Winter2002</bcf:citekey>
-    <bcf:citekey order="19" intorder="3">Ziliaskopoulos1996</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">Fu2023</bcf:citekey>
-    <bcf:citekey order="20" intorder="2">Madsen2017</bcf:citekey>
-    <bcf:citekey order="21" intorder="1">TRB2022</bcf:citekey>
-    <bcf:citekey order="22" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="23" intorder="1">Dozza2016</bcf:citekey>
-    <bcf:citekey order="24" intorder="1">StVO2013</bcf:citekey>
-    <bcf:citekey order="25" intorder="1">Ortuzar2011</bcf:citekey>
-    <bcf:citekey order="25" intorder="2">Prato2009</bcf:citekey>
-    <bcf:citekey order="26" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="27" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="28" intorder="1">Broach2012</bcf:citekey>
-    <bcf:citekey order="28" intorder="2">Winters2012</bcf:citekey>
-    <bcf:citekey order="29" intorder="1">Mekuria2012</bcf:citekey>
-    <bcf:citekey order="29" intorder="2">Furth2016</bcf:citekey>
-    <bcf:citekey order="30" intorder="1">Lovelace2017</bcf:citekey>
+    <bcf:citekey order="17" intorder="1">May1990</bcf:citekey>
+    <bcf:citekey order="17" intorder="2">TRB2022</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">Kirby1969</bcf:citekey>
+    <bcf:citekey order="18" intorder="2">Winter2002</bcf:citekey>
+    <bcf:citekey order="18" intorder="3">Ziliaskopoulos1996</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">Mohammadi2023</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">TRB2022</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">OpenStreetMap</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">StVO2013</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">Ortuzar2011</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">OpenStreetMap</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">OpenStreetMap</bcf:citekey>
+    <bcf:citekey order="26" intorder="1">Broach2012</bcf:citekey>
+    <bcf:citekey order="27" intorder="1">Furth2016</bcf:citekey>
+    <bcf:citekey order="28" intorder="1">CycleStreets</bcf:citekey>
+    <bcf:citekey order="29" intorder="1">OpenStreetMap</bcf:citekey>
+    <bcf:citekey order="30" intorder="1">OpenStreetMap</bcf:citekey>
     <bcf:citekey order="31" intorder="1">OpenStreetMap</bcf:citekey>
     <bcf:citekey order="32" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="33" intorder="1">OpenStreetMap</bcf:citekey>
+    <bcf:citekey order="33" intorder="1">Broach2012</bcf:citekey>
     <bcf:citekey order="34" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="35" intorder="1">Broach2012</bcf:citekey>
+    <bcf:citekey order="35" intorder="1">OpenStreetMap</bcf:citekey>
     <bcf:citekey order="36" intorder="1">OpenStreetMap</bcf:citekey>
     <bcf:citekey order="37" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="38" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="39" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="40" intorder="1">Notter2025</bcf:citekey>
-    <bcf:citekey order="41" intorder="1">Applegate2006</bcf:citekey>
-    <bcf:citekey order="42" intorder="1">Current1989</bcf:citekey>
-    <bcf:citekey order="43" intorder="1">Pedalpower2025</bcf:citekey>
-    <bcf:citekey order="44" intorder="1">PedalpowerND</bcf:citekey>
-    <bcf:citekey order="45" intorder="1">PedalpowerND</bcf:citekey>
-    <bcf:citekey order="46" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="47" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="48" intorder="1">Kleinanzeigen2026</bcf:citekey>
-    <bcf:citekey order="49" intorder="1">PedalpowerND</bcf:citekey>
-    <bcf:citekey order="50" intorder="1">CarlaCargo</bcf:citekey>
-    <bcf:citekey order="51" intorder="1">CarlaCargo</bcf:citekey>
-    <bcf:citekey order="52" intorder="1">CarlaCargo</bcf:citekey>
+    <bcf:citekey order="38" intorder="1">Notter2025</bcf:citekey>
+    <bcf:citekey order="39" intorder="1">Applegate2006</bcf:citekey>
+    <bcf:citekey order="40" intorder="1">Current1989</bcf:citekey>
+    <bcf:citekey order="41" intorder="1">Pedalpower2025</bcf:citekey>
+    <bcf:citekey order="42" intorder="1">PedalpowerND</bcf:citekey>
+    <bcf:citekey order="43" intorder="1">PedalpowerND</bcf:citekey>
+    <bcf:citekey order="44" intorder="1">OpenStreetMap</bcf:citekey>
+    <bcf:citekey order="45" intorder="1">OpenStreetMap</bcf:citekey>
+    <bcf:citekey order="46" intorder="1">PedalpowerND</bcf:citekey>
+    <bcf:citekey order="47" intorder="1">CarlaCargo</bcf:citekey>
+    <bcf:citekey order="48" intorder="1">CarlaCargo</bcf:citekey>
+    <bcf:citekey order="49" intorder="1">CarlaCargo</bcf:citekey>
+    <bcf:citekey order="50" intorder="1">OpenStreetMap</bcf:citekey>
+    <bcf:citekey order="51" intorder="1">OpenStreetMap</bcf:citekey>
+    <bcf:citekey order="52" intorder="1">OpenStreetMap</bcf:citekey>
     <bcf:citekey order="53" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="54" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="55" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="56" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="57" intorder="1">mycargobike</bcf:citekey>
-    <bcf:citekey order="58" intorder="1">mycargobike</bcf:citekey>
-    <bcf:citekey order="59" intorder="1">mycargobike</bcf:citekey>
+    <bcf:citekey order="54" intorder="1">mycargobike</bcf:citekey>
+    <bcf:citekey order="55" intorder="1">mycargobike</bcf:citekey>
+    <bcf:citekey order="56" intorder="1">mycargobike</bcf:citekey>
+    <bcf:citekey order="57" intorder="1">OpenStreetMap</bcf:citekey>
+    <bcf:citekey order="58" intorder="1">OpenStreetMap</bcf:citekey>
+    <bcf:citekey order="59" intorder="1">OpenStreetMap</bcf:citekey>
     <bcf:citekey order="60" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="61" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="62" intorder="1">OpenStreetMap</bcf:citekey>
-    <bcf:citekey order="63" intorder="1">OpenStreetMap</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

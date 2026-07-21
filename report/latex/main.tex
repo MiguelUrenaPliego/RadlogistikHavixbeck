@@ -108,7 +108,9 @@
 
 % --- Links ---
 \usepackage{hyperref}
+\usepackage{xurl} % allows breaking long URLs at any character, avoiding the stretched inter-word spaces that unbreakable URLs cause in justified bibliography text
 \usepackage{bookmark}
+\emergencystretch=3em % extra give for justification so long unbreakable DOI/URL tokens don't overflow into the margin
 
 % --- Bibliography (author-year, close to APA style used in the original) ---
 \usepackage[
@@ -352,7 +354,7 @@ Vier der fünf befragten Restaurants beziehen neben dem Großhandel auch regiona
 
 \section{Warum eine eigene Routing-Engine entwickelt wurde}
 
-Bestehende OSM-Router (OSRM, GraphHopper, BRouter, CycleStreets) sind für urbane Netze mit guter Tagging-Abdeckung optimiert \parencite{Luxen2011,GraphHopper,Brenschede,CycleStreets}. In Havixbeck sind viele Attribute nicht getaggt, sodass Black-Box-Router damit schlecht umgehen. Deshalb wurde mit OSMnx/NetworkX eine eigene Routing-Pipeline gebaut: volle Kontrolle über Straßennetz, Bewertungskriterien und Parameter, plus ein eigener Bikeability-Score pro Kante. Defaults für fehlende Tags wurden auf das Gebiet abgestimmt, statt urban kalibrierte Logik zu übernehmen \parencite{Ortuzar2011,Prato2009}. Die berechneten Routen wurden stichprobenartig mit Google Maps verglichen.
+Bestehende OSM-Router (OSRM, GraphHopper, BRouter, CycleStreets) sind für urbane Netze mit guter Tagging-Abdeckung optimiert \parencite{Luxen2011,GraphHopper,Brenschede,CycleStreets}. In Havixbeck sind viele Attribute nicht getaggt, sodass Black-Box-Router damit schlecht umgehen. Deshalb wurde mit OSMnx/NetworkX eine eigene Routing-Pipeline gebaut: volle Kontrolle über Straßennetz, Bewertungskriterien und Parameter, plus ein eigener Bikeability-Score pro Kante. Defaults für fehlende Tags wurden auf das Gebiet abgestimmt, statt urban kalibrierte Logik zu übernehmen. Die berechneten Routen wurden stichprobenartig mit Google Maps verglichen.
 
 \section{Aufbau der Routing-Engine}
 
@@ -360,13 +362,15 @@ Für jede Kante werden getrennt für Pkw und (E-)Lastenrad eine Fahrzeit und ein
 
 \subsection{Kinematisches Fahrzeitmodell}
 
-Statt Distanz und Höchstgeschwindigkeit nutzt die Engine ein Geschwindigkeitsprofil mit Beschleunigung, Cruising und Verzögerung \parencite{May1990,TRB2022,Guth2020}. Jeder Kreuzung wird ein Node Penalty zugeordnet, wie in der Literatur zu Abbiegewiderständen an Kreuzungen üblich \parencite{Kirby1969,Winter2002,Ziliaskopoulos1996}: 2\,s (Pkw) bzw. 0,5\,s (E-Bike) unsignalisiert \parencite{Fu2023,Madsen2017}, 15\,s signalisiert nach dem Highway Capacity Manual \parencite{TRB2022}. Die gewählten Werte liegen jeweils im mittleren Bereich der in der Literatur berichteten Spannen. Havixbeck hat laut OpenStreetMap nur zwei signalisierte Kreuzungen \parencite{OpenStreetMap}.
+Statt Distanz und Höchstgeschwindigkeit nutzt die Engine ein Geschwindigkeitsprofil mit Beschleunigung, Cruising und Verzögerung \parencite{May1990,TRB2022}. Jeder Kreuzung wird ein Node Penalty zugeordnet, wie in der Literatur zu Abbiegewiderständen an Kreuzungen üblich \parencite{Kirby1969,Winter2002,Ziliaskopoulos1996}: 2\,s (Pkw) bzw. 0,5\,s (E-Bike) unsignalisiert \parencite{Mohammadi2023}, 15\,s signalisiert nach dem Highway Capacity Manual \parencite{TRB2022}. Die gewählten Werte liegen jeweils im mittleren Bereich der in der Literatur berichteten Spannen. Havixbeck hat laut OpenStreetMap nur zwei signalisierte Kreuzungen \parencite{OpenStreetMap}.
 
-Die Beschleunigung ist beim E-Bike höher als beim Pkw angesetzt (1,5--2,5\,m/s\textsuperscript{2}, \cite{Dozza2016}), weil der Elektromotor sofort das volle Drehmoment liefert und das Lastenrad ein deutlich geringeres Gewicht als ein Pkw beschleunigen muss. Höchstgeschwindigkeiten folgen meistens der Straßenverkehrs-Ordnung: 7\,km/h Schrittgeschwindigkeit im verkehrsberuhigten Bereich, sonst 25\,km/h für das E-Lastenrad \parencite{StVO2013}. Auf mit Fußgängern geteilten Wegen setzt die Engine 10\,km/h an, da dort mehr Konflikte auftreten und höhere Geschwindigkeiten unsicher wären. Der Pkw nutzt die aus dem OSM-Typ abgeleitete Höchstgeschwindigkeit (20--100\,km/h).
+Die Beschleunigung ist beim E-Bike höher als beim Pkw angesetzt (1,5--2,5\,m/s\textsuperscript{2}), weil der Elektromotor sofort das volle Drehmoment liefert und das Lastenrad ein deutlich geringeres Gewicht als ein Pkw beschleunigen muss. Höchstgeschwindigkeiten folgen meistens der Straßenverkehrs-Ordnung: 7\,km/h Schrittgeschwindigkeit im verkehrsberuhigten Bereich, sonst 25\,km/h für das E-Lastenrad \parencite{StVO2013}. Auf mit Fußgängern geteilten Wegen setzt die Engine 10\,km/h an, da dort mehr Konflikte auftreten und höhere Geschwindigkeiten unsicher wären. Der Pkw nutzt die aus dem OSM-Typ abgeleitete Höchstgeschwindigkeit (20--100\,km/h).
+
+Das kinematische Fahrzeitmodell berücksichtigt keine Steigung, was vertretbar ist, weil das E-Lastenrad ohnehin von einem Elektromotor unterstützt wird, der Höhenunterschiede beim Beschleunigungs- und Cruisingverhalten weitgehend ausgleicht, und weil Havixbeck und sein Umland ein sehr flaches Relief mit nur geringen Höhenunterschieden aufweisen.
 
 \subsection{Straßentyp-Präferenz beim Pkw-Routing}
 
-Das Pkw-Routing bevorzugt zusätzlich höherrangige Straßen (Autobahnen/Landstraßen), selbst wenn die Fahrzeit dadurch bis zu 10\,\% länger ausfällt \parencite{Ortuzar2011,Prato2009}. So laufen Pkw- und Radrouten oft auseinander: Der Pkw nimmt die Umgehung, das Lastenrad fährt direkt durch den Ortskern oder nutzt für den Pkw gesperrte Feldwege. Bild~\ref{fig:routenvergleich1} zeigt ein Beispiel dieser Abweichung.
+Das Pkw-Routing bevorzugt zusätzlich höherrangige Straßen (Autobahnen/Landstraßen) -- ein Präferenzverhalten, das in der Verkehrszuordnung (Assignment) allgemein modelliert wird \parencite{Ortuzar2011} --, selbst wenn die Fahrzeit dadurch im Modell bis zu 10\,\% länger ausfällt. So laufen Pkw- und Radrouten oft auseinander: Der Pkw nimmt die Umgehung, das Lastenrad fährt direkt durch den Ortskern oder nutzt für den Pkw gesperrte Feldwege. Bild~\ref{fig:routenvergleich1} zeigt ein Beispiel dieser Abweichung.
 
 \begin{figure}[htbp]
 \centering
@@ -405,7 +409,7 @@ Fahrspuren & 5 & 1 Spur = 10, 2 Spuren = 5, 3+ Spuren = 1 & 10 \\
 \end{longtable}
 }
 
-Die drei Gewicht-10-Kriterien dominieren, konsistent mit Trennung und Straßenklasse als stärksten Einflussfaktoren \parencite{Broach2012,Winters2012}. Defaults stammen aus Sichtprüfung von Stichproben. Ein Ignore-Mechanismus blendet nicht aussagekräftige Kriterien aus, angelehnt an das „Level of Traffic Stress“-Konzept \parencite{Mekuria2012,Furth2016} und CycleStreets' „Quietness“-Wert \parencite{Lovelace2017}. Die Bilder~\ref{fig:pavement} und~\ref{fig:bikescore-werte} zeigen die daraus resultierenden Pavement- und Bike-Score-Werte im Untersuchungsgebiet.
+Die drei Gewicht-10-Kriterien dominieren, konsistent mit Trennung und Straßenklasse als stärksten Einflussfaktoren \parencite{Broach2012}. Defaults stammen aus Sichtprüfung von Stichproben. Ein Ignore-Mechanismus blendet nicht aussagekräftige Kriterien aus, angelehnt an das „Level of Traffic Stress“-Konzept \parencite{Furth2016} und CycleStreets' „Quietness“-Wert \parencite{CycleStreets}. Die Bilder~\ref{fig:pavement} und~\ref{fig:bikescore-werte} zeigen die daraus resultierenden Pavement- und Bike-Score-Werte im Untersuchungsgebiet.
 
 \begin{figure}[htbp]
 \centering
@@ -455,17 +459,17 @@ Jede Kante bekommt eine CO\textsubscript{2}-Emission in g/km. Grundlage ist der 
 
 Das Projekt bildet die im Leitfaden beschriebene Systematik deshalb selbst nach, statt die Originaldaten zu verwenden: Für jede Kante wird zunächst eine geschwindigkeitsabhängige Basisemission berechnet, die anschließend mit einem Straßentyp-Faktor, einem LOS-Faktor und einem Steigungsfaktor multipliziert wird. Alle drei Faktoren sind nicht gemessen, sondern aus den Grafiken und Tabellen des öffentlichen Leitfadens abgelesen. Die Straßentyp-Faktoren liegen zwischen 0,95 und 1,40, je nachdem wie gleichmäßig der Verkehr auf diesem Straßentyp typischerweise fließt. Der LOS-Faktor wird für das gesamte Untersuchungsgebiet einheitlich als LOS~B angesetzt (Faktor 1,05), da Havixbeck und sein Umland ländlich geprägt sind und der Verkehr dort praktisch immer frei fließt (kein Stop-and-go wie in Städten).
 
-Die Basisemission selbst ist ein Polynom zweiten Grades in der Geschwindigkeit $v$, für einen Benzin-Pkw beispielsweise
+Die Basisemission selbst ist ein Polynom zweiten Grades in der Geschwindigkeit $v$ (in km/h), für einen Benzin-Pkw beispielsweise
 
 \begin{equation}
-E_{\text{Basis}}(v) = 215 - 2{,}6\,v + 0{,}019\,v^{2}
+E_{\text{Basis}}(v) = 215 - 2{,}6\,v + 0{,}019\,v^{2}, \qquad v \text{ in km/h}, \quad E_{\text{Basis}} \text{ in g/km}
 \end{equation}
 
 Diese Kurve bildet die im Leitfaden gezeigte U-Form nach: Bei sehr niedriger Geschwindigkeit ist der Verbrauch pro Kilometer hoch, weil der Motor viel Zeit für wenig zurückgelegte Strecke braucht. Mit steigender Geschwindigkeit sinkt der Verbrauch bis zu einem Minimum im mittleren Geschwindigkeitsbereich. Bei hoher Geschwindigkeit steigt er durch den zunehmenden Luftwiderstand wieder an. Für Elektro-Lastenräder wird keine CO\textsubscript{2}-Emission angesetzt, da sie für diese Fahrten keine fossile Energie verbrauchen.
 
 \section{Von Kanten-Scores zu Liefertouren: automatische und manuelle Schleifen}
 
-Fahrzeiten und Scores werden zu einer Paarmatrix verdichtet, aus der die Tourenplanung je Akteur eine Lieferschleife bestimmt. Für das automatische Screening werden zwei Schleifentypen unterschieden: die Produzenten-Schleife (Anlieferung, 5-km-Radius) und die Konsumenten-Schleife (Abholung, Mindestabdeckung aller Produkte, ohne Radiusgrenze). Beide lösen ein Traveling-Salesman-Problem mit minimaler Fahrzeit \parencite{Applegate2006}, die Konsumenten-Variante als Covering-Salesman-Problem \parencite{Current1989}.
+Fahrzeiten und Scores werden zu einer Paarmatrix verdichtet, aus der die Tourenplanung je Akteur eine Lieferschleife bestimmt. Für das automatische Screening werden zwei Schleifentypen unterschieden: die Produzenten-Schleife (Anlieferung, 5-km-Radius) und die Konsumenten-Schleife (Abholung, Mindestabdeckung aller Produkte, ohne Radiusgrenze). Beide lösen ein Traveling-Salesman-Problem mit minimaler Fahrzeit \parencite{Applegate2006}, die Konsumenten-Variante als Covering-Salesman-Problem \parencite{Current1989}. Beide werden exakt gelöst, mit einer selbst implementierten Held-Karp-Bitmask-Dynamic-Programming-Lösung (reines Python/NumPy, ohne externen Solver wie OR-Tools) statt einer Heuristik. Die dabei auftretende Anzahl an Halten pro Schleife bleibt klein genug (deutlich unter 15), sodass die exponentielle Laufzeit der exakten Lösung praktisch unproblematisch ist.
 
 Die manuellen Szenarien sind anhand von Interview-Daten als feste Stopp-Abfolge definiert. Beide Schleifentypen, automatisch und manuell, bilden zusammen die Grundlage für die konkreten Konzeptauswertungen in Kapitel~\ref{ch:massnahmen}.
 
@@ -529,7 +533,7 @@ Alexianer Stift Tilbeck & 37,0 & 12,37 & 3,32 & 46,8 & 12,22 & 26,6 & 8,0 \\
 \end{longtable}
 }
 
-Mit einem Bike-Score von 8,0 erreicht diese Schleife den besten Wert aller drei Konzepte. Auch wirtschaftlich lohnt sich der Umstieg: Ein gebrauchter Pkw-Anhänger kostet rund 9.700\,€ \parencite{Kleinanzeigen2026}, ein Lastenrad nach dem Berliner Modell dagegen nur 3.400--6.200\,€ \parencite{PedalpowerND} und ist zugleich als Verkaufsstand nutzbar. Unter den drei Konzepten hat Stift Tilbeck damit das größte Potenzial für eine kurzfristige Umsetzung.
+Mit einem Bike-Score von 8,0 erreicht diese Schleife den besten Wert aller drei Konzepte. Auch wirtschaftlich ist der Umstieg attraktiv: Die Kosten eines Lastenrads nach dem Berliner Modell (3.400--6.200\,€, \cite{PedalpowerND}) liegen in einer ähnlichen Größenordnung wie die eines neuwertigen Pkw mit vergleichbarer Nutzung als mobiler Verkaufsstand. Zusätzlich unterliegt der Umbau eines Lastenrads zum Verkaufsstand deutlich weniger regulatorischen Anforderungen (z.\,B. keine Fahrzeugzulassung, keine Hauptuntersuchung) als der eines Pkw, was den Aufbau vereinfacht und zusätzlich kostengünstiger macht. Unter den drei Konzepten hat Stift Tilbeck damit das größte Potenzial für eine kurzfristige Umsetzung.
 
 \section{Konzept 2: Lieferungen von Landwirtschaftsbetrieben zu Gastronomien}
 
@@ -581,7 +585,8 @@ Hof Richter       & 60,7  & 28,91 & 6,97  & 89,5  & 26,47 & 47,4 & 5,7 \\
 Hof Rahmann       & 61,9  & 28,31 & 6,36  & 93,1  & 26,02 & 50,4 & 4,4 \\
 Hof Baumeister    & 87,8  & 42,75 & 10,15 & 132,1 & 40,46 & 50,5 & 6,1 \\
 \midrule
-\textbf{Summe / Ø} & \textbf{424,8} & \textbf{201,76} & \textbf{48,07} & \textbf{630,2} & \textbf{189,98} & \textbf{48,4} & \textbf{5,9} \\
+\textbf{Summe} & \textbf{424,8} & \textbf{201,76} & \textbf{48,07} & \textbf{630,2} & \textbf{189,98} & -- & -- \\
+\textbf{Durchschnitt (Ø)} & -- & -- & -- & -- & -- & \textbf{48,4} & \textbf{5,9} \\
 \end{longtable}
 }
 
@@ -628,9 +633,10 @@ Hof Heilers-Lülf  & 29,9 & 12,10 & 2,77 & 36,9 & 10,97 & 23,5 & 7,0 \\
 Imkerei Gerdes    & 25,3 & 8,52  & 2,21 & 31,6 & 9,12  & 25,1 & 9,4 \\
 Landg.\ Overwaul  & 28,5 & 10,59 & 2,62 & 37,6 & 10,61 & 31,7 & 1,5 \\
 Hof Baumeister    & 39,9 & 15,71 & 3,90 & 52,9 & 16,31 & 32,8 & 8,6 \\
-Hof Rahmann\textsuperscript{*} & 6,0 & 2,00 & 0,00 & 10,0 & 2,00 & 66,7 & -- \\
+Hof Rahmann & 6,0 & 2,00 & 0,00 & 10,0 & 2,00 & 66,7 & -- \\
 \midrule
-\textbf{Summe / Ø} & \textbf{286,0} & \textbf{85,94} & \textbf{22,04} & \textbf{329,2} & \textbf{83,50} & \textbf{15,1} & \textbf{5,7} \\
+\textbf{Summe} & \textbf{286,0} & \textbf{85,94} & \textbf{22,04} & \textbf{329,2} & \textbf{83,50} & -- & -- \\
+\textbf{Durchschnitt (Ø)} & -- & -- & -- & -- & -- & \textbf{15,1} & \textbf{5,7} \\
 \end{longtable}
 }
 
@@ -692,7 +698,8 @@ Yosara            & 7,9   & 2,42  & 0,70  & 12,0  & 1,50  & 51,0 & 4,0 \\
 Landg.\ Overwaul  & 18,7  & 9,40  & 1,92  & 29,5  & 9,40  & 57,7 & 3,0 \\
 Wanjas            & 7,2   & 2,16  & 0,63  & 11,4  & 2,16  & 58,4 & 4,2 \\
 \midrule
-\textbf{Summe / Ø} & \textbf{172,8} & \textbf{70,21} & \textbf{16,71} & \textbf{251,3} & \textbf{66,86} & \textbf{45,5} & \textbf{4,9} \\
+\textbf{Summe} & \textbf{172,8} & \textbf{70,21} & \textbf{16,71} & \textbf{251,3} & \textbf{66,86} & -- & -- \\
+\textbf{Durchschnitt (Ø)} & -- & -- & -- & -- & -- & \textbf{45,5} & \textbf{4,9} \\
 \end{longtable}
 }
 
@@ -733,9 +740,10 @@ Netto              & 45,8  & 23,11 & 5,39  & 67,2  & 21,37 & 46,7 & 4,4 \\
 Aldi               & 16,8  & 6,39  & 1,76  & 24,8  & 6,59  & 47,6 & 8,2 \\
 Essmann            & 17,1  & 6,41  & 1,78  & 25,9  & 6,61  & 51,7 & 8,2 \\
 Hof Baumeister     & 34,2  & 16,74 & 3,91  & 52,7  & 16,74 & 54,0 & 8,5 \\
-Hof Rahmann\textsuperscript{*} & 6,0 & 2,00 & 0,00 & 10,0 & 2,00 & 66,7 & 3,9 \\
+Hof Rahmann & 6,0 & 2,00 & 0,00 & 10,0 & 2,00 & 66,7 & 3,9 \\
 \midrule
-\textbf{Summe / Ø} & \textbf{260,0} & \textbf{117,19} & \textbf{28,25} & \textbf{376,2} & \textbf{113,13} & \textbf{44,7} & \textbf{6,5} \\
+\textbf{Summe} & \textbf{260,0} & \textbf{117,19} & \textbf{28,25} & \textbf{376,2} & \textbf{113,13} & -- & -- \\
+\textbf{Durchschnitt (Ø)} & -- & -- & -- & -- & -- & \textbf{44,7} & \textbf{6,5} \\
 \end{longtable}
 }
 
